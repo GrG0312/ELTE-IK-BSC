@@ -1,0 +1,5 @@
+<nz-card [nzTitle]="worker.name" [ngClass]="{ 'redBg' : redBg && worker.errors >= 10}">
+    <p>Errors: {{ worker.errors }}</p>
+    <p>Permission: {{ worker.permission }}</p>
+    <button *ngIf="redBg && worker.errors >= 10" (click)="workerOut.emit(worker)">Hiba Feloldása</button>
+</nz-card>

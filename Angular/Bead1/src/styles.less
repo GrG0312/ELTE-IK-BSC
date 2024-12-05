@@ -1,0 +1,91 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+button{
+  border-color: black;
+  border-width: thick;
+  border-style: solid;
+}
+
+.generateMarginsAndPaddings(@counter) when (@counter >= 0) {
+  .generateMarginsAndPaddings(@counter - 5);
+  .m-t-@{counter} {
+    margin-top: @counter * 1px !important;
+  }
+  .m-b-@{counter} {
+    margin-bottom: @counter * 1px !important;
+  }
+  .m-l-@{counter} {
+    margin-left: @counter * 1px !important;
+  }
+  .m-r-@{counter} {
+    margin-right: @counter * 1px !important;
+  }
+  .p-t-@{counter} {
+    padding-top: @counter * 1px !important;
+  }
+  .p-b-@{counter} {
+    padding-bottom: @counter * 1px !important;
+  }
+  .p-l-@{counter} {
+    padding-left: @counter * 1px !important;
+  }
+  .p-r-@{counter} {
+    padding-right: @counter * 1px !important;
+  }
+}
+.generateMarginsAndPaddings(150);
+
+.color-gray {
+  color: gray !important;
+}
+
+.display-block {
+  display: block !important;
+}
+
+.display-flex {
+  display: flex !important;
+}
+
+.display-inline-flex {
+  display: inline-flex !important;
+}
+
+.filter-grayscale-1 {
+  filter: grayscale(1);
+}
+
+.flex-grow-1 {
+  flex-grow: 1 !important;
+}
+
+.font-style-italic {
+  font-style: italic !important;
+}
+
+.font-weight-bold {
+  font-weight: bold !important;
+}
+
+.m-auto {
+  margin: auto !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.text-left {
+  text-align: left !important;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+.w-100 {
+  width: 100% !important;
+}

@@ -1,0 +1,323 @@
+/*START*/
+html{
+        background-image: url(pictures/bg.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    
+    body{
+        margin: auto;
+        height: 94vh;
+        width: 100%;
+        padding-top: 3vh;
+    }
+
+    #main{
+        margin: auto;
+        width: 95%;
+        height: 100%;
+        border-color: rgba(71, 52, 52, 0.7);
+        background-color: rgba(252, 221, 155, 0.7);
+        border-width: 3px;
+        border-style: solid;
+        border-radius: 15px;
+    }
+    
+    #start{
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        width: 560px;
+        height: 240px;
+        border-width: 7.5px;
+        border-style: solid;
+        border-radius: 100px;
+        border-color: rgb(255, 145, 0);
+        background-color: rgb(153, 87, 0);
+        font-size: 100px;
+        cursor: pointer;
+    }
+    
+    #start:hover{
+        border-width: 15px;
+    }
+    
+    #start:active{
+        background-color: rgb(255, 145, 0);
+        border-color: rgb(153, 87, 0);
+    }
+    
+    @media screen and (max-width:1023px){
+        #start{
+            width: 260px;
+            height: 80px;
+            font-size: 36px;
+        }
+        .seasonName{
+            font-size: 2vw;
+        }
+        .seasonScore{
+            font-size: 2vh;
+        }
+    }
+    /*START END*/
+    
+.holder{
+    background-color: rgba(255, 255, 255, 0.5);
+    border-width: 0;
+    border-radius: 10px;
+}
+/*TABLE*/
+#tableHolder{
+    float: left;
+    margin-top: 1.25%;
+    margin-bottom: 1.25%;
+    margin-left: 1%;
+    width: 48%;
+    height: 95%;
+}
+#tableHolder table{
+    padding: 3%;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+#tableHolder td{
+    width: 9%;
+    height: 9%;
+    border-radius: 15px;
+    border-width: 3px;
+}
+.rightSide table{
+    padding: 3%;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+.rightSide tr{
+    width: 95%;
+}
+.rightSide td{
+    height: 90%;
+    width: 23%;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: rgb(255, 255, 255);
+}
+/*TABLE END*/
+
+/*SEASONS*/
+.rightSide{
+    float: right;
+    margin-top: 1.25%;
+    margin-right: 1%;
+    width: 48%;
+    height: 30%;
+}
+.seasons{
+    border-radius: 10px;
+    border: 5px solid;
+}
+.seasonName{
+    margin: auto;
+    font-size: 3vw;
+}
+.seasonScore{
+    margin: auto;
+    font-size: 3vh;
+}
+#spring{
+    background-color: rgb(98, 253, 77);
+    border-color: darkgreen;
+    -webkit-text-stroke: 2px;
+    -webkit-text-stroke-color: darkgreen;
+}
+#summer{
+    background-color: rgb(248, 233, 94);
+    border-color:coral;
+    -webkit-text-stroke: 2px;
+    -webkit-text-stroke-color: coral;
+}
+#winter{
+    background-color: rgb(108, 223, 223);
+    border-color:darkcyan;
+    -webkit-text-stroke: 2px;
+    -webkit-text-stroke-color: darkcyan;
+}
+#autumn{
+    background-color: rgb(206, 96, 96);
+    border-color:brown;
+    -webkit-text-stroke: 2px;
+    -webkit-text-stroke-color: brown;
+}
+/*SEASONS END*/
+
+/*QUESTS*/
+.flexer{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: space-around;
+    justify-content: space-around;
+    align-items: center;
+}
+.quests{
+    margin: auto;
+    position: relative;
+    height: 45%;
+    width: 45%;
+    border-radius: 25px;
+}
+.activeQuest{
+    border-width: 5px;
+    border-color: blue;
+    border-style: solid;
+}
+#questA, #questB, #questC, #questD{
+    position:absolute;
+    color: white;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 16px;
+    -webkit-text-stroke-color: black;
+    -webkit-text-stroke-width: 1px;
+}
+#questA{
+    top: 47%;
+    left: 65%;
+}
+#questB{
+    top: 47%;
+    left: 88%;
+}
+#questC{
+    top: 61%;
+    left: 65%;
+}
+#questD{
+    top: 61%;
+    left: 88%;
+}
+/*QUESTS END*/
+
+/*RANDOM*/
+#currentSeason{
+    margin: auto;
+    width: 40%;
+    height: 10%;
+    position: relative;
+    top: 1.5%;
+    left: 1.5%;
+    color: white;
+    font-size: 2vw;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    -webkit-text-stroke: 2px;
+    -webkit-text-stroke-color: black;
+}
+#randomElement{
+    text-align: center;
+    vertical-align: middle;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 80%;
+    height: 80%;
+    background-color:rgba(35, 28, 63, 0.7);
+    border-radius: 15px;
+}
+#randomElement table{
+    margin: auto;
+    width: 35%;
+}
+#randomElement table:hover{
+    border-style: solid;
+    border-radius: 25px;
+    border-width: 5px;
+    border-color: black;
+    cursor: pointer;
+}
+#randomElement tr td{
+    height: 33%;
+    border-radius: 10px;
+}
+#time{
+    position: relative;
+    top: 3%;
+    font-size: 24px ;
+    color: white;
+    -webkit-text-stroke: 1.5px;
+    -webkit-text-stroke-color: black;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-align: center;
+    vertical-align: middle;
+    margin: auto;
+    width: 50%;
+}
+.controlsButton{
+    cursor: pointer;
+    margin: auto;
+    font-size: 2vw;
+    font-weight: bold;
+    height: 50%;
+    width: 25%;
+    color: white;
+    -webkit-text-stroke: 1.5px;
+    -webkit-text-stroke-color: black;
+    background-color: brown;
+}
+/*RANDOM END*/
+/*FIELD TYPES*/
+.empty{
+    background-color: rgba(255, 145, 0, 0.3);
+}
+#randomElement .empty{
+    background-color: rgb(255, 208, 146);
+}
+.mountain{
+    background-image: url(pictures/mountain.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: rgb(145, 99, 69);
+}
+.forest{
+    background-image: url(pictures/forest.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: rgb(98, 253, 77);
+}
+.water{
+    background-image: url(pictures/water.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: rgb(108, 223, 223);
+}
+.farm{
+    background-image: url(pictures/grain.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: rgb(248, 233, 94);
+}
+.town{
+    background-image: url(pictures/house.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: rgb(206, 96, 96);
+}
+/*FIELD TYPES END*/
+
+#end{
+    text-align: center;
+    vertical-align: middle;
+    color: white;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 600%;
+}

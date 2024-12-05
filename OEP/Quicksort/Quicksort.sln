@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33502.453
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "quick", "quick\quick.csproj", "{6DD20495-359C-43BF-B725-0A2A9978BCA6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "gyakorlo", "gyakorlo\gyakorlo.csproj", "{2CB54A57-034B-4F9A-9410-602F6DACDAD0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "helybenrendez", "helybenrendez\helybenrendez.csproj", "{B9CC2E66-1F39-47CD-8FD8-6B5E5532EE60}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6DD20495-359C-43BF-B725-0A2A9978BCA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DD20495-359C-43BF-B725-0A2A9978BCA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DD20495-359C-43BF-B725-0A2A9978BCA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DD20495-359C-43BF-B725-0A2A9978BCA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CB54A57-034B-4F9A-9410-602F6DACDAD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CB54A57-034B-4F9A-9410-602F6DACDAD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CB54A57-034B-4F9A-9410-602F6DACDAD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CB54A57-034B-4F9A-9410-602F6DACDAD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9CC2E66-1F39-47CD-8FD8-6B5E5532EE60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9CC2E66-1F39-47CD-8FD8-6B5E5532EE60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9CC2E66-1F39-47CD-8FD8-6B5E5532EE60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9CC2E66-1F39-47CD-8FD8-6B5E5532EE60}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {126D8CD8-2BDD-4F41-96AD-A3F11A1E255E}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,46 @@
+{
+    "admin": {
+        "name": "admin",
+        "password": "admin",
+        "isAdmin": true,
+        "cards": [
+            "defaultcard00",
+            "defaultcard01",
+            "defaultcard07",
+            "defaultcard09",
+            "defaultcard05",
+            "defaultcard04"
+        ]
+    },
+    "Post\u00e1s Pat": {
+        "name": "Post\u00e1s Pat",
+        "password": "jess0404",
+        "email": "patrick@tale.com",
+        "isAdmin": false,
+        "money": 598,
+        "cards": [
+            "defaultcard02",
+            "defaultcard03",
+            "defaultcard06"
+        ],
+        "offers": {
+            "65a691367d55b": {
+                "gold_get": "0",
+                "gold_give": "0",
+                "card_give": "defaultcard03",
+                "id": "65a691367d55b"
+            }
+        }
+    },
+    "Gigb\u00e9t": {
+        "name": "Gigb\u00e9t",
+        "password": "abcd123",
+        "email": "gigbet@gigbet.gigbet",
+        "isAdmin": false,
+        "money": 2500,
+        "cards": [
+            "defaultcard08"
+        ],
+        "offers": []
+    }
+}

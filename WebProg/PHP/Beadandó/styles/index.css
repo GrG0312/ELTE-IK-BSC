@@ -1,0 +1,19 @@
+@import "variables.css";
+
+.separateContent{
+    border-top: 5px solid var(--clr-main);
+    border-bottom: 5px solid var(--clr-main);
+    min-height: 12vh;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+form{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    min-height: 10vh;
+}

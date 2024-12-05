@@ -1,0 +1,6 @@
+<div id="konva-container" (dragover)="OnDragOver($event)" (drop)="OnDrop($event)"></div>
+<nz-radio-group [(ngModel)]="shapeType">
+    <label nz-radio nzValue="arc">Arcs</label>
+    <label nz-radio nzValue="point">Points</label>
+  </nz-radio-group>
+<nz-slider [(ngModel)]="angle" (ngModelChange)="UpdateAngles()" nzMin="0" nzMax="360"></nz-slider>

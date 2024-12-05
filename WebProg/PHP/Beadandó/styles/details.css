@@ -1,0 +1,45 @@
+#details {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    width: 90%;
+}
+
+#details .image {
+    border-radius: 8px;
+    text-align: center;
+}
+
+#details img {
+    height: auto;
+    max-width: 80%;
+}
+
+#details .info {
+    padding: 10px;
+}
+.detailsContent{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    align-items: center;
+    font-size: 28px;
+}
+.detailsDesc{
+    display: flex;
+    flex-direction: column;
+}
+.detailsContent img{
+    margin-right: 15px;
+    border-radius: 15px;
+    border-style: solid;
+    border-top-color: var(--clr-white);
+    border-left-color: var(--clr-white);
+    border-right-color: var(--clr-dark);
+    border-bottom-color: var(--clr-dark);
+    border-width: 3px;
+}
+#name{
+    color: var(--clr-highlight);
+}

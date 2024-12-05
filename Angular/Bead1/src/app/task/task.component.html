@@ -1,0 +1,41 @@
+<div class="task-image-container text-center">
+  <img *ngIf="!imageUrl.endsWith('.mp4') && !imageUrl.endsWith('.webm')"
+       style="max-width: 100%; max-height: 300px"
+       [src]="imageUrl"/>
+  <video *ngIf="imageUrl.endsWith('.mp4') || imageUrl.endsWith('.webm')"
+         autoplay
+         [muted]="true"
+         [src]="imageUrl"></video>
+</div>
+
+<h3 class="color-gray font-weight-bold text-center">
+  {{ index }}/{{ task }} - {{ description }}
+</h3>
+
+<p class="color-gray font-weight-bold text-center">
+  {{ story }}
+</p>
+
+<div *ngIf="!selected"
+     class="text-center m-b-10">
+  <button nz-button (click)="thisWayBraveAdventurer.emit()">
+    Ezt választom
+  </button>
+</div>
+
+<h2>Feladatok</h2>
+<nz-list nzItemLayout="horizontal">
+  <nz-list-item *ngFor="let task of tasks; let index = index"
+                class="display-block">
+    <span nz-icon
+          [nzType]="configuration.subTasks[index + 1] ? 'check-square' : 'border'"
+          nzTheme="outline"
+          class="checker"></span>
+    <span class="points">{{task.xp}} pont</span>
+    <div>
+      <markdown [data]="task.text">
+      </markdown>
+    </div>
+    <nz-divider></nz-divider>
+  </nz-list-item>
+</nz-list>

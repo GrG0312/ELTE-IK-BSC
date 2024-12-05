@@ -1,0 +1,19 @@
+.cell {
+    width: 25px;
+    height: 25px;
+    border: 1px solid black;
+    display: inline-block
+}
+
+.cell.adversary-selection {
+    background-color: purple;
+}
+.cell.user-selection {
+    background-color: yellow;
+}
+.cell.lost-selection {
+    background-color: red;
+}
+.cell.won-selection {
+    background-color: green;
+}

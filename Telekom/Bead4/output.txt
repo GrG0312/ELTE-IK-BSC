@@ -1,0 +1,7 @@
+ez az
+input fájl
+tartalma
+ez
+fog átíródni a szerveren
+keresztül
+az outputba

@@ -1,0 +1,7 @@
+<p>task2-a works!</p>
+<div>Highlight workers with 10 or more errors:
+    <nz-switch [(ngModel)]="switchValue"></nz-switch>
+</div>
+<li *ngFor="let worker of workers">
+    <app-display [worker]="worker" [redBg]="switchValue" (workerOut)="RefreshWorker($event)"></app-display>
+</li>

@@ -1,0 +1,59 @@
+﻿<Window x:Class="BlackHole.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewmodel="clr-namespace:BlackHole.ViewModel"
+        xmlns:local="clr-namespace:BlackHole" d:DataContext="{d:DesignInstance Type=viewmodel:BlackHoleGameViewModel}"
+        mc:Ignorable="d"
+        Title="Black Hole Game" Height="800" Width="800" ResizeMode="NoResize">
+    <Grid Name="mainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0">
+            <MenuItem Header="New Game">
+                <MenuItem Header="Small" Command="{Binding NewGameCommand}" CommandParameter="5"/>
+                <MenuItem Header="Medium" Command="{Binding NewGameCommand}" CommandParameter="7"/>
+                <MenuItem Header="Large" Command="{Binding NewGameCommand}" CommandParameter="9"/>
+            </MenuItem>
+            <MenuItem Name="saveButton" Header="Save Game" Command="{Binding SaveGameCommand}" IsEnabled="{Binding IsSaveOkay}"/>
+            <MenuItem Header="Load Game" Command="{Binding LoadGameCommand}"/>
+        </Menu>
+
+        <ItemsControl Grid.Row="1" ItemsSource="{Binding Fields}">
+            
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid>
+                    </UniformGrid>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Black" BorderThickness="2">
+                        <Button Command="{Binding Click}" CommandParameter="{Binding XY}" Background="{Binding Colour}" IsEnabled="{Binding IsEnabled}" Margin="0"/>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <StatusBar Grid.Row="2">
+            <StatusBarItem>
+                <TextBlock Text="Player ships:" Background="{Binding IsActivePlayerRed}"/>
+            </StatusBarItem>
+            <StatusBarItem>
+                <TextBlock Text="{Binding RedShipsNumber}" Foreground="Red"/>
+            </StatusBarItem>
+            <StatusBarItem>
+                <TextBlock Text="Player ships:" Background="{Binding IsActivePlayerBlue}"/>
+            </StatusBarItem>
+            <StatusBarItem>
+                <TextBlock Text="{Binding BlueShipsNumber}" Foreground="Blue"/>
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+</Window>

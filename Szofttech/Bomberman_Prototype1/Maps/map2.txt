@@ -1,0 +1,13 @@
+Desert
+19 11
+b b b b b b b b b b b b b b b b b b b
+b r n n x x n r n r n r r r r n n n b
+b n r n r n n r x r n r n r b r n r b
+b r n r n r r r x n b x n r b r r r b
+b r n r b n r x r n r n r r x x r n b
+b r r x n n n r r r x r r n r n n r b
+b x r r r b n r n r x r b n r n x n b
+b x r n n r r n b r n r n r r n b n b
+b r r n r r n r r r n r r b n r n r b
+b n r b n r x n r n b x x n n r n n b
+b b b b b b b b b b b b b b b b b b b

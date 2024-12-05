@@ -1,0 +1,109 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+	  <EnableWindowsTargeting>true</EnableWindowsTargeting>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="View\Resources\Characters\Char1Front2.png" />
+    <None Remove="View\Resources\Characters\Char2Front2.png" />
+    <None Remove="View\Resources\Characters\Char3Front2.png" />
+    <None Remove="View\Resources\Characters\monster.png" />
+    <None Remove="View\Resources\cyberground.png" />
+    <None Remove="View\Resources\Desert\desertground.png" />
+    <None Remove="View\Resources\Desert\doboz.png" />
+    <None Remove="View\Resources\Desert\tegla.png" />
+    <None Remove="View\Resources\Desert\torheto.png" />
+    <None Remove="View\Resources\doboz.png" />
+    <None Remove="View\Resources\Effects\bonusbomb.png" />
+    <None Remove="View\Resources\Effects\detonator.png" />
+    <None Remove="View\Resources\Effects\ghost.png" />
+    <None Remove="View\Resources\Effects\instant.png" />
+    <None Remove="View\Resources\Effects\invinc.png" />
+    <None Remove="View\Resources\Effects\minusrange.png" />
+    <None Remove="View\Resources\Effects\nobomb.png" />
+    <None Remove="View\Resources\Effects\obstacle.png" />
+    <None Remove="View\Resources\Effects\plusrange.png" />
+    <None Remove="View\Resources\Effects\slowdown.png" />
+    <None Remove="View\Resources\Effects\speedup.png" />
+    <None Remove="View\Resources\Menu\arrow.png" />
+    <None Remove="View\Resources\Menu\button.png" />
+    <None Remove="View\Resources\Menu\crown.png" />
+    <None Remove="View\Resources\Menu\four.png" />
+    <None Remove="View\Resources\Menu\logo.png" />
+    <None Remove="View\Resources\Menu\menuground.png" />
+    <None Remove="View\Resources\Menu\metal.png" />
+    <None Remove="View\Resources\Menu\one.png" />
+    <None Remove="View\Resources\Menu\stat.png" />
+    <None Remove="View\Resources\Menu\three.png" />
+    <None Remove="View\Resources\Menu\two.png" />
+    <None Remove="View\Resources\Objects\bomb.png" />
+    <None Remove="View\Resources\Objects\bomb_1.png" />
+    <None Remove="View\Resources\Objects\bomb_2.png" />
+    <None Remove="View\Resources\Objects\bomb_temp.png" />
+    <None Remove="View\Resources\Objects\bomb_temp2.png" />
+    <None Remove="View\Resources\Objects\exp_1.png" />
+    <None Remove="View\Resources\Objects\exp_2.png" />
+    <None Remove="View\Resources\Swamp\doboz.png" />
+    <None Remove="View\Resources\Swamp\swampground.png" />
+    <None Remove="View\Resources\Swamp\tegla.png" />
+    <None Remove="View\Resources\Swamp\torheto.png" />
+    <None Remove="View\Resources\tegla.png" />
+    <None Remove="View\Resources\torheto.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Model\Model.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="View\Resources\Characters\Char1Front2.png" />
+    <Resource Include="View\Resources\Characters\Char2Front2.png" />
+    <Resource Include="View\Resources\Characters\Char3Front2.png" />
+    <Resource Include="View\Resources\Characters\monster.png" />
+    <Resource Include="View\Resources\Cyber\cyberground.png" />
+    <Resource Include="View\Resources\Cyber\doboz.png" />
+    <Resource Include="View\Resources\Cyber\tegla.png" />
+    <Resource Include="View\Resources\Cyber\torheto.png" />
+    <Resource Include="View\Resources\Desert\desertground.png" />
+    <Resource Include="View\Resources\Desert\doboz.png" />
+    <Resource Include="View\Resources\Desert\tegla.png" />
+    <Resource Include="View\Resources\Desert\torheto.png" />
+    <Resource Include="View\Resources\Effects\bonusbomb.png" />
+    <Resource Include="View\Resources\Effects\detonator.png" />
+    <Resource Include="View\Resources\Effects\ghost.png" />
+    <Resource Include="View\Resources\Effects\instant.png" />
+    <Resource Include="View\Resources\Effects\invinc.png" />
+    <Resource Include="View\Resources\Effects\minusrange.png" />
+    <Resource Include="View\Resources\Effects\nobomb.png" />
+    <Resource Include="View\Resources\Effects\obstacle.png" />
+    <Resource Include="View\Resources\Effects\plusrange.png" />
+    <Resource Include="View\Resources\Effects\slowdown.png" />
+    <Resource Include="View\Resources\Effects\speedup.png" />
+    <Resource Include="View\Resources\Menu\arrow.png" />
+    <Resource Include="View\Resources\Menu\button.png" />
+    <Resource Include="View\Resources\Menu\crown.png" />
+    <Resource Include="View\Resources\Menu\four.png" />
+    <Resource Include="View\Resources\Menu\logo.png" />
+    <Resource Include="View\Resources\Menu\menuground.png" />
+    <Resource Include="View\Resources\Menu\metal.png" />
+    <Resource Include="View\Resources\Menu\one.png" />
+    <Resource Include="View\Resources\Menu\stat.png" />
+    <Resource Include="View\Resources\Menu\three.png" />
+    <Resource Include="View\Resources\Menu\two.png" />
+    <Resource Include="View\Resources\Objects\bomb_1.png" />
+    <Resource Include="View\Resources\Objects\bomb_2.png" />
+    <Resource Include="View\Resources\Objects\exp_1.png" />
+    <Resource Include="View\Resources\Objects\exp_2.png" />
+    <Resource Include="View\Resources\Swamp\doboz.png" />
+    <Resource Include="View\Resources\Swamp\swampground.png" />
+    <Resource Include="View\Resources\Swamp\tegla.png" />
+    <Resource Include="View\Resources\Swamp\torheto.png" />
+  </ItemGroup>
+
+</Project>

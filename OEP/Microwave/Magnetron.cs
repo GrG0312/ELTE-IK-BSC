@@ -1,0 +1,51 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Microwave
+{
+	public class Magnetron : StateMachine
+	{
+		private Door door;
+		private Lamp lamp;
+		private bool working = false;
+
+		public Magnetron() : base(Signal.none, Signal.final) { }
+
+		public void Control(Door door, Lamp lamp)
+		{
+			this.door = door;
+			this.lamp = lamp;
+		}
+
+		protected override void Transition(Signal signal)
+		{
+			switch (signal)
+			{
+				case Signal.pressed:
+					if (!working && door.Closed)
+					{
+						working = true;
+						lamp.Send(Signal.started);
+					} else if (working) {
+						working = false;
+						lamp.Send(Signal.stopped);
+					}
+					break;
+				case Signal.opened:
+					if (working)
+					{
+						working = false;
+					}
+					break;
+			}
+		}
+
+		public override string ToString()
+		{
+			return "magnetron is " + (working ? "working" : "not working");
+		}
+	}
+}

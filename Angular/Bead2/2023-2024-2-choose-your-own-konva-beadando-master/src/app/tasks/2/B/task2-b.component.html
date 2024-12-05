@@ -1,0 +1,35 @@
+<nz-card id="konva-toolbar">
+  <div class="toolbar-button-container">
+    <ng-template #imageCar>
+      <svg width="60px" height="30px" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+        <!-- Body of the car -->
+        <rect x="30" y="10" width="140" height="40" fill="blue"/>
+        <!-- Windows -->
+        <rect x="50" y="15" width="40" height="20" fill="skyblue"/>
+        <rect x="110" y="15" width="40" height="20" fill="skyblue"/>
+        <!-- Wheels -->
+        <circle cx="60" cy="55" r="15" fill="black"/>
+        <circle cx="140" cy="55" r="15" fill="black"/>
+      </svg>
+    </ng-template>
+    <ng-template #imageParking>
+      <svg width="30px" height="50px" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <text x="30" y="20" font-family="Arial" font-size="40" fill="black">P</text>
+      </svg>
+    </ng-template>
+
+    <ng-template #toolbarButtonTemplate
+                 let-image="buttonImage"
+                 let-mode="mode"
+    >
+      <button nz-button
+              [nzType]="selectedMode === mode ? 'primary' : 'default'"
+              (click)="selectedMode = mode">
+        <ng-container *ngTemplateOutlet="image"></ng-container>
+      </button>
+    </ng-template>
+    <ng-container *ngTemplateOutlet="toolbarButtonTemplate; context: { buttonImage: imageCar, mode: Task2BKonvaMode.CAR }"></ng-container>
+    <ng-container *ngTemplateOutlet="toolbarButtonTemplate; context: { buttonImage: imageParking, mode: Task2BKonvaMode.PARKING }"></ng-container>
+  </div>
+</nz-card>
+<div id="konva-container"></div>

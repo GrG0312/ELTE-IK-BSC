@@ -1,0 +1,61 @@
+@import "variables.css";
+
+.offer{
+    min-height: 65vh;
+    width: 49%;
+    border-radius: 30px;
+    border-color: var(--clr-main);
+    border-width: 5px;
+    border-style: solid;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#errorMessage{
+    margin-top: 10vh;
+    border-style: double;
+    border-color: var(--clr-white);
+    border-width: 10px;
+    background-color: red;
+    font-size: 42px;
+    min-height: 40vh;
+    color: var(--clr-white);
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+#return{
+    min-height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 65vh;
+}
+
+.form_element{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form_element select, .form_element input{
+    width: 50%;
+}
+
+.errorText{
+    color: red;
+    font-style: italic;
+    font-size: 16px;
+}

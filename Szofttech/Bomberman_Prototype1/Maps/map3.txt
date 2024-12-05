@@ -1,0 +1,13 @@
+Swamp
+19 11
+b b b b b b b b b b b b b b b b b b b
+b x r n x x n r n n n b r x x n n r b
+b r n n r n n r x r r x n r r r n x b
+b r n r n r r r x r n n r r b r r x b
+b r n r b n r x r r r r r n n r b n b
+b r r x n n n r r r b b x r r r n r b
+b x r r r b n r n n r r x r n n r r b
+b x r n n r r n b n n r r n x b n n b
+b r r n r r n r r n r r n r r n r n b
+b n r b n r x n r n b x x n n r r n b
+b b b b b b b b b b b b b b b b b b b

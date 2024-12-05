@@ -1,0 +1,97 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/25.0.2 Chrome/128.0.6613.186 Electron/32.2.5 Safari/537.36" version="25.0.2">
+  <diagram name="Page-1" id="o75G6O5AJKZnPw6o2JuL">
+    <mxGraphModel dx="819" dy="482" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="WZHIP6fTuQLiBXRDYRWK-13" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="80" y="180" width="680" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="GO87aina9Gtt3tQ5UPxz-15" value="Játékos" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;gradientColor=none;fillColor=#182e3e;textShadow=1;labelBorderColor=none;labelBackgroundColor=none;" parent="1" vertex="1">
+          <mxGeometry x="120" y="240" width="120" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="WZHIP6fTuQLiBXRDYRWK-2" value="Játék indulása" style="ellipse;whiteSpace=wrap;html=1;fontFamily=Lucida Console;fontSize=12;textShadow=0;gradientColor=none;fillColor=#182e3e;spacingLeft=5;spacingRight=5;" parent="1" vertex="1">
+          <mxGeometry x="360" y="50" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="WZHIP6fTuQLiBXRDYRWK-4" value="Csapatok mozgatása" style="ellipse;whiteSpace=wrap;html=1;fontFamily=Lucida Console;fontSize=12;textShadow=0;gradientColor=none;fillColor=#182e3e;spacingLeft=5;spacingRight=5;" parent="1" vertex="1">
+          <mxGeometry x="320" y="200" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="WZHIP6fTuQLiBXRDYRWK-5" value="Egység mozgatása" style="ellipse;whiteSpace=wrap;html=1;fontFamily=Lucida Console;fontSize=12;textShadow=0;gradientColor=none;fillColor=#182e3e;spacingLeft=5;spacingRight=5;" parent="1" vertex="1">
+          <mxGeometry x="320" y="280" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="WZHIP6fTuQLiBXRDYRWK-6" value="Egység megtámadása" style="ellipse;whiteSpace=wrap;html=1;fontFamily=Lucida Console;fontSize=12;textShadow=0;gradientColor=none;fillColor=#182e3e;spacingLeft=5;spacingRight=5;" parent="1" vertex="1">
+          <mxGeometry x="320" y="360" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="WZHIP6fTuQLiBXRDYRWK-7" value="" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="GO87aina9Gtt3tQ5UPxz-15" target="WZHIP6fTuQLiBXRDYRWK-4" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="270" y="230" as="sourcePoint" />
+            <mxPoint x="290" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WZHIP6fTuQLiBXRDYRWK-8" value="" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="GO87aina9Gtt3tQ5UPxz-15" target="WZHIP6fTuQLiBXRDYRWK-5" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="250" y="307" as="sourcePoint" />
+            <mxPoint x="330" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WZHIP6fTuQLiBXRDYRWK-9" value="" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="GO87aina9Gtt3tQ5UPxz-15" target="WZHIP6fTuQLiBXRDYRWK-6" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="250" y="341" as="sourcePoint" />
+            <mxPoint x="330" y="330" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WZHIP6fTuQLiBXRDYRWK-14" value="" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;startArrow=classic;startFill=1;" parent="1" source="WZHIP6fTuQLiBXRDYRWK-13" target="WZHIP6fTuQLiBXRDYRWK-2" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="350" y="150" as="sourcePoint" />
+            <mxPoint x="400" y="100" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WZHIP6fTuQLiBXRDYRWK-15" value="&amp;lt;&amp;lt;precedes&amp;gt;&amp;gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="414" y="140" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="87M8HmgCxiRbnpJcsIGk-1" value="Pont elfoglalása" style="ellipse;whiteSpace=wrap;html=1;fontFamily=Lucida Console;fontSize=12;textShadow=0;gradientColor=none;fillColor=#182e3e;spacingLeft=5;spacingRight=5;" vertex="1" parent="1">
+          <mxGeometry x="560" y="240" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="87M8HmgCxiRbnpJcsIGk-2" value="" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;startArrow=classic;startFill=1;" edge="1" parent="1" source="87M8HmgCxiRbnpJcsIGk-1" target="WZHIP6fTuQLiBXRDYRWK-4">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="430" y="190" as="sourcePoint" />
+            <mxPoint x="430" y="140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="87M8HmgCxiRbnpJcsIGk-3" value="" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;startArrow=classic;startFill=1;" edge="1" parent="1" source="87M8HmgCxiRbnpJcsIGk-1" target="WZHIP6fTuQLiBXRDYRWK-5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="480" y="290" as="sourcePoint" />
+            <mxPoint x="450" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="87M8HmgCxiRbnpJcsIGk-4" value="&amp;lt;&amp;lt;extends&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="433" y="274" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="87M8HmgCxiRbnpJcsIGk-5" value="Játék vége" style="ellipse;whiteSpace=wrap;html=1;fontFamily=Lucida Console;fontSize=12;textShadow=0;gradientColor=none;fillColor=#182e3e;spacingLeft=5;spacingRight=5;" vertex="1" parent="1">
+          <mxGeometry x="560" y="360" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="87M8HmgCxiRbnpJcsIGk-6" value="" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;startArrow=classic;startFill=1;" edge="1" parent="1" source="87M8HmgCxiRbnpJcsIGk-5" target="WZHIP6fTuQLiBXRDYRWK-6">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="570" y="290" as="sourcePoint" />
+            <mxPoint x="450" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="87M8HmgCxiRbnpJcsIGk-7" value="&amp;lt;&amp;lt;precedes&amp;gt;&amp;gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="440" y="370" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="87M8HmgCxiRbnpJcsIGk-8" value="" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;startArrow=classic;startFill=1;" edge="1" parent="1" source="87M8HmgCxiRbnpJcsIGk-5" target="87M8HmgCxiRbnpJcsIGk-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="570" y="410" as="sourcePoint" />
+            <mxPoint x="450" y="410" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="87M8HmgCxiRbnpJcsIGk-9" value="&amp;lt;&amp;lt;precedes&amp;gt;&amp;gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="610" y="320" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="87M8HmgCxiRbnpJcsIGk-10" value="&amp;lt;&amp;lt;extends&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="442" y="226" width="110" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

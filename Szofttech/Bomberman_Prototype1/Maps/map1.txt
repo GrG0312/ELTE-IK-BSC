@@ -1,0 +1,13 @@
+Cyber
+19 11
+b b b b b b b b b b b b b b b b b b b
+b r r n r r r r x r r r r n n r r r b
+b b x n n n b n n r r n b b n r n x b
+b r r b n b r r n b n n n r r n n r b
+b n n r n r n n n n b n r n r b n b b
+b r r b n b r n r b b n r n n n r r b
+b x n n r n n n n b n n n x b r n r b
+b r r n r n r n r b n b r x n r n n b
+b n n r n r r n r n n n r r r n n b b
+b r n r x r n n r n r r x x b r n r b
+b b b b b b b b b b b b b b b b b b b

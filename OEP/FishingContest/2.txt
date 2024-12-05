@@ -1,0 +1,6 @@
+DEF 2023.05.08 9:08
+Karcsi Peti
+Peti 08:34 keszeg 6.5
+Peti 09:55 ponty 1.0
+Peti 10:07 harcsa 8.0
+Karcsi 10:40 harcsa 999.0

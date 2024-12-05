@@ -1,0 +1,145 @@
+﻿<UserControl x:Class="Bomberman_Prototype1.View.GamePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:vm="clr-namespace:Bomberman_Prototype1.ViewModel"
+      xmlns:m="clr-namespace:Bomberman_Prototype1.Model;assembly=Model"
+      xmlns:entities="clr-namespace:Bomberman_Prototype1.Model.Entities;assembly=Model"
+      xmlns:powerups="clr-namespace:Bomberman_Prototype1.Model.Entities.Powerups;assembly=Model"
+      xmlns:monsters="clr-namespace:Bomberman_Prototype1.Model.Entities.Monsters;assembly=Model"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <vm:BoolToOpacityConverter x:Key="BoolToOpacityConverter"/>
+        <Storyboard x:Key="FlashingAnimation">
+            <DoubleAnimation
+                     Storyboard.TargetProperty="Opacity"
+                     From="0.5"
+                     To="1"
+                     RepeatBehavior="4x"
+                     AutoReverse="True"
+                     Duration="0:0:0.1"/>
+        </Storyboard>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="{Binding BackgroundImage}" Stretch="UniformToFill" />
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="235"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="266"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <ItemsControl Grid.Column="1" Grid.Row="0">
+            <StackPanel>
+                <TextBlock Visibility="{Binding IsNotBattleRoyal}" Text="{Binding GameTime}" Foreground="White" FontFamily="Bahnschrift" FontWeight="ExtraBold" FontSize="65" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="580,100,0,0">
+                    <TextBlock.Effect>
+                        <DropShadowEffect ShadowDepth="6" Direction="120" BlurRadius="6" Color="Black" />
+                    </TextBlock.Effect>
+                </TextBlock>
+                <TextBlock Visibility="{Binding IsBattleRoyal}" Text="{Binding GameTime}" Foreground="White" FontFamily="Bahnschrift" FontWeight="ExtraBold" FontSize="65" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="250,-100,0,0">
+                    <TextBlock.Effect>
+                        <DropShadowEffect ShadowDepth="7" Direction="120" BlurRadius="8" Color="Black" />
+                    </TextBlock.Effect>
+                </TextBlock>
+                <TextBlock Visibility="{Binding IsBattleRoyal}" Text="Map shrinks in:" Foreground="White" FontFamily="Bahnschrift" FontWeight="ExtraBold" FontSize="65" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="500,-100,0,0">
+                    <TextBlock.Effect>
+                        <DropShadowEffect ShadowDepth="7" Direction="120" BlurRadius="8" Color="Black" />
+                    </TextBlock.Effect>
+                </TextBlock>
+                <TextBlock Visibility="{Binding IsBattleRoyal}" Text="{Binding BattleRoyalTime}" Foreground="White" FontFamily="Bahnschrift" FontWeight="ExtraBold" FontSize="65" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="980,-100,0,0">
+                    <TextBlock.Effect>
+                        <DropShadowEffect ShadowDepth="7" Direction="120" BlurRadius="8" Color="Black" />
+                    </TextBlock.Effect>
+                </TextBlock>
+            </StackPanel>
+        </ItemsControl>
+        <ItemsControl x:Name="Canvas" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Elements}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Canvas/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemContainerStyle>
+                <Style TargetType="ContentPresenter">
+                    <Setter Property="Canvas.Left" Value="{Binding X}"/>
+                    <Setter Property="Canvas.Top" Value="{Binding Y}"/>
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+            <ItemsControl.Resources>
+                <DataTemplate DataType="{x:Type entities:Player}">
+                    <Image Name="Player1" RenderOptions.BitmapScalingMode="Fant" Width="100" Source="{Binding SpritePath}" Opacity="{Binding IsGhost, Converter={StaticResource BoolToOpacityConverter}}">
+                        <Image.Style>
+                            <Style TargetType="Image">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsGhost}" Value="True">
+                                        <Setter Property="Opacity" Value="0.5" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding IsGhost}" Value="False">
+                                        <Setter Property="Opacity" Value="1.0" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding StartFlicker}" Value="True">
+                                        <DataTrigger.EnterActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <StaticResource ResourceKey="FlashingAnimation"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </DataTrigger.EnterActions>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding IsInvincible}" Value="True">
+                                        <Setter Property="Effect">
+                                            <Setter.Value>
+                                                <DropShadowEffect Color="Gold" Direction="330" ShadowDepth="0" BlurRadius="10"/>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type vm:Wall}">
+                    <Image Name="Brick" Width="70">
+                        <Image.Style>
+                            <Style TargetType="Image">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Type}" Value="Wall">
+                                        <Setter Property="Source" Value="{Binding SpriteUri}" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Type}" Value="WeakWall">
+                                        <Setter Property="Source" Value="{Binding SpriteUri}" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Type}" Value="Box">
+                                        <Setter Property="Source" Value="{Binding SpriteUri}" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type vm:Board}">
+                    <Rectangle Stroke="Black" Width="{Binding Width}" Height="{Binding Height}" Fill="{Binding Groundcolor}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type entities:Bomb}">
+                    <Image RenderOptions.BitmapScalingMode="Fant" Width="100" Source="{Binding SpritePath}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type vm:Explosion}">
+                    <Image RenderOptions.BitmapScalingMode="Fant" Width="80" Source="../../../View/Resources/Objects/exp_2.png"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type powerups:EffectBase}">
+                    <Image RenderOptions.BitmapScalingMode="Fant" Width="65" Source="{Binding SpritePath}"/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type monsters:Monster}">
+                    <Image Name="Monster" RenderOptions.BitmapScalingMode="Fant" Width="100" Source="{Binding SpritePath}"/>
+                </DataTemplate>
+            </ItemsControl.Resources>
+        </ItemsControl>
+        <Label Name="HostIndicator" HorizontalAlignment="Center" Margin="0,28,0,0" VerticalAlignment="Top" Height="90" Width="206" FontSize="36" Foreground="Red" FontWeight="Bold" FontFamily="Bahnschrift" Content="{Binding IsHost}"/>
+    </Grid>
+</UserControl>

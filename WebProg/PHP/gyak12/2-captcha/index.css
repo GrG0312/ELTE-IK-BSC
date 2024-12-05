@@ -1,0 +1,82 @@
+@import url("https://cdn.jsdelivr.net/gh/elte-fi/www-assets@19.10.16/styles/mdss.min.css");
+
+#grid {
+    display: grid;
+    gap: 0px;
+    grid-template-columns: 2em 600px;
+    grid-template-rows: 338px 2em;
+    justify-content: center;
+}
+
+#image {
+    position: relative;
+    background-image: url('bg.png');
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+#piece {
+    position: absolute;
+    top: 50px;
+    left: 100px;
+    width: 100px;
+    height: 60px;
+    box-shadow: 10px 10px 15px 1px rgba(0,0,0,0.6);
+    border: 2px solid #000000;
+    background-image: url('bg.png');
+    background-repeat: no-repeat;
+}
+
+#pieceX {
+    width: 600px;
+}
+
+#vertical {
+    transform: rotate(90deg);
+}
+
+#pieceY {
+    width: 338px;
+}
+
+#centered {
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+}
+
+#ok {
+    padding: 8px 2em;
+    font-size: 1.5em;
+    color: white;
+    background-color: darkgreen;
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 1em;
+    width: fit-content;
+    user-select: none;
+}
+
+#ok:hover {
+    background-color: forestgreen;
+}
+
+#ok:active {
+    background-color: yellowgreen;
+}
+
+#ok:disabled, #ok:disabled:hover, #ok:disabled:active {
+    background-color: gray;
+}
+
+#error {
+    font-size: 1.5em;
+    color: red;
+    display: none;
+}
+
+#success {
+    font-size: 1.5em;
+    color: darkgreen;
+    display: none;
+}

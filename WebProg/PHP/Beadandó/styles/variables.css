@@ -1,0 +1,26 @@
+:root {
+    --clr-main: #517d81;
+    --clr-secondary: #7a8174;
+    --clr-highlight: #008C95;
+    --clr-light: #d3d8de;
+    --clr-dark: #1d2530;
+    --clr-white: #f0f0f0;
+
+    --poke-clr-white: linear-gradient(var(--clr-white), var(--clr-light));
+    
+    --poke-clr-normal: linear-gradient(#c5c5a1, #a4a484);
+    --poke-clr-fire: linear-gradient(#e96933, #d05e2e);
+    --poke-clr-water: linear-gradient(#6188a1, #54778c);
+    --poke-clr-electric: linear-gradient(#f5f583, #d7d773);
+    --poke-clr-grass: linear-gradient(#87cf87, #76b376);
+    --poke-clr-ice: linear-gradient(#7ce1e1, #6ec9c9);
+    --poke-clr-fighting: linear-gradient(#db93db, #bf81bf);
+    --poke-clr-poison: linear-gradient(#844784, #6a396a);
+    --poke-clr-ground: linear-gradient(#776043, #5d4b35);
+    --poke-clr-psychic: linear-gradient(#c04f8b, #a74479);
+    --poke-clr-bug: linear-gradient(#c19748, #ab8540);
+    --poke-clr-rock: linear-gradient(#9e4646, #883c3c);
+    --poke-clr-ghost: linear-gradient(#57576d, #3e3e4e);
+    --poke-clr-dark: linear-gradient(#1f1f1f, #000000);
+    --poke-clr-steel: linear-gradient(#c5c5c5, #a2a2a2);
+}

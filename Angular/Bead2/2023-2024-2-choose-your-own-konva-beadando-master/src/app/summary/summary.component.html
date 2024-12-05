@@ -1,0 +1,89 @@
+<ng-template #level
+             let-description="description"
+             let-level="level"
+             let-threshold="threshold">
+  <div [class.youAreHere]="threshold <= expectedResult && threshold + maxPoints * thresholdDifference > expectedResult ||
+                          (threshold >= maxPoints && expectedResult > maxPoints) ||
+                          (level === 1 && expectedResult < maxPoints * 0.4)"
+       style="min-height: 50px"
+       [ngStyle]="{'filter': threshold <= expectedResult && threshold + maxPoints * thresholdDifference > expectedResult ||
+                          (threshold >= maxPoints && expectedResult > maxPoints) ||
+                          (level === 1 && expectedResult < maxPoints * 0.4) ? '' : 'blur(2px) grayscale(1)' }">
+    <div class="image-container text-center"
+         style="display: none;">
+      <img *ngIf="!images.get(level)!.endsWith('.mp4') && !images.get(level)!.endsWith('.webm')"
+           [src]="'assets/images/summary/' + images.get(level)"
+           style="max-height: 250px"/>
+      <video *ngIf="images.get(level)!.endsWith('.mp4') || images.get(level)!.endsWith('.webm')"
+             autoplay
+             [muted]="true"
+             [src]="'assets/images/summary/' + images.get(level)"
+             style="max-height: 250px"></video>
+    </div>
+    <div class="flex-grow-1 m-l-10 m-r-10">
+      {{ description }}
+    </div>
+    <div *ngIf="threshold" style="width: 150px; min-width: 150px">
+      <ng-container *ngIf="threshold < maxPoints">
+        {{ threshold }} - {{ (threshold + maxPoints * thresholdDifference) - 0.01 }} pont
+      </ng-container>
+      <ng-container *ngIf="threshold >= maxPoints">
+        {{ maxPoints }}+ pont
+      </ng-container>
+    </div>
+  </div>
+</ng-template>
+
+<nz-card class="m-auto" style="width: 500px;"
+  [nzTitle]="summaryTitleTemplate"
+  [nzCover]="summaryCoverTemplate">
+  <ng-template #summaryTitleTemplate>
+    <div class="display-block">
+      <h1 class="m-b-0">
+        Várható eredmény: <b>{{ expectedResult }}</b> / {{ maxPoints }}
+      </h1>
+      <p class="font-style-italic m-b-0 white-space-break-spaces">
+        A várható eredmény feltételezi, hogy a kipipált feladatok valóban tökéletesen megoldásra kerültek.
+      </p>
+    </div>
+  </ng-template>
+  <ng-template #summaryCoverTemplate>
+    <div style="padding: 10px;">
+      <ng-container *ngTemplateOutlet="level; context: {
+        description: 'Tökéletes, most már beküldheted a megoldást!',
+        level: 6,
+        threshold: maxPoints
+      }"></ng-container>
+
+        <ng-container *ngTemplateOutlet="level; context: {
+        description: 'Egész jó, de innen már semmi a max pont elérése, fordulj vissza és csinálj meg még pár feladatot.',
+        level: 5,
+        threshold: maxPoints * 0.85
+      }"></ng-container>
+
+        <ng-container *ngTemplateOutlet="level; context: {
+        description: 'Már csak egy kevés kéne a sikerhez, fordulj vissza és csinálj meg még pár feladatot.',
+        level: 4,
+        threshold: maxPoints * 0.7
+      }"></ng-container>
+
+        <ng-container *ngTemplateOutlet="level; context: {
+        description: 'Tisztes középszer, fordulj vissza és csinálj meg még pár feladatot.',
+        level: 3,
+        threshold: maxPoints * 0.55
+      }"></ng-container>
+
+        <ng-container *ngTemplateOutlet="level; context: {
+        description: 'Az abszolút minimum, fordulj vissza és csinálj meg még pár feladatot.',
+        level: 2,
+        threshold: maxPoints * 0.4
+      }"></ng-container>
+
+        <ng-container *ngTemplateOutlet="level; context: {
+        description: 'Még nem érted el a minimumot, így ne küldd be!',
+        level: 1,
+        threshold: 0
+      }"></ng-container>
+    </div>
+  </ng-template>
+</nz-card>

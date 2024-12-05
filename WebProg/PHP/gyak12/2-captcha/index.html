@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 2: Captcha</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <h1>Task 2: Captcha</h1>
+    <div id="grid">
+        <div>
+            <div id="vertical">
+                <input type="range" id="pieceY" min="0" max="338" value="50" step="1">
+            </div>
+        </div>
+        <div id="image">
+            <div id="piece">
+            </div>
+        </div>
+        <div></div>
+        <div>
+            <input type="range" id="pieceX" min="0" max="600" value="100" step="1">
+        </div>
+    </div>
+    <div id="centered">
+        <button id="ok">OK</button>
+        <div id="error">Verification failed! Remaining attempts: <span id="attempts">3</span></div>
+        <div id="success">Successful verification!</div>
+    </div>
+    <script src="index.js"></script>
+</body>
+
+</html>

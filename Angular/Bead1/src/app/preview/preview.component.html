@@ -1,0 +1,12 @@
+<h3>
+  {{ data.text }}
+</h3>
+
+<div class="text-center">
+  <img [src]="data.imageUrl"
+       style="max-width: 350px"/>
+
+  <div class="m-t-20">
+    <button nz-button (click)="modal.close()">Tovább...</button>
+  </div>
+</div>

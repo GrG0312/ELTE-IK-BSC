@@ -1,0 +1,50 @@
+@import "variables.css";
+
+#profileOverview{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 5px solid var(--clr-main);
+}
+#nameAndCards{
+    margin-left: 15px;
+}
+#nameAndCards h2{
+    font-size: 52px;
+    margin-bottom: 0;
+    text-decoration: underline;
+}
+#nameAndCards p{
+    margin-top: 5px;
+    font-size: 24px;
+}
+#money{
+    height: 100%;
+    text-align: center;
+    font-size: 28px;
+    margin-right: 15px;
+}
+#cardsOfUser{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    align-content: space-around;
+}
+#email{
+    font-style: italic;
+}
+
+a{
+    text-decoration: none;
+}
+
+#new-card{
+    min-height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 8px;
+    border-bottom: 5px solid var(--clr-main);
+}

@@ -1,0 +1,50 @@
+.stylishButton {
+    padding: 16px 42px;
+    border-radius: 3px;
+    line-height: 1.25;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+}
+
+.blueviolet {
+    background-color: blueviolet;
+}
+.brown {
+    background-color: brown;
+}
+.darkgoldenrod {
+    background-color: darkgoldenrod;
+}
+.palevioletred {
+    background-color: palevioletred;
+}
+.teal {
+    background-color: teal;
+}
+
+#container {
+    background-color: gainsboro;
+    margin-top: 10px;
+    min-width: 100%;
+    min-height: 100px;
+}
+
+.circle {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    border-radius: 80px;
+    margin: 10px;
+}
+
+.rectangle {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    margin: 10px;
+}

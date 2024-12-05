@@ -1,0 +1,2 @@
+False;ALXA;12;8;../View/Resources/Characters/Char2Front2.png;
+True;Gorgooo;18;10;../View/Resources/Characters/Char3Front2.png;

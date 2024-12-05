@@ -1,0 +1,6 @@
+<p>task1-a works!</p>
+<nz-slider [nzMax]="255" [(ngModel)]="valueRed"></nz-slider>
+<nz-slider [nzMax]="255" [(ngModel)]="valueGreen"></nz-slider>
+<nz-slider [nzMax]="255" [(ngModel)]="valueBlue"></nz-slider>
+<nz-slider [nzMax]="1" [nzMin]="0" [nzStep]="0.01" [(ngModel)]="valueAplha"></nz-slider>
+<div class="rectangle" [style.background-color]="BackGroundColor()"></div>
