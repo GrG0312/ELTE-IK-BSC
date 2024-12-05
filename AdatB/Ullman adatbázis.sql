@@ -1,0 +1,1 @@
+alter user zvp7ej identified by Lc0420;

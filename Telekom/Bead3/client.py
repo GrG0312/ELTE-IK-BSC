@@ -81,10 +81,9 @@ with socket(AF_INET, SOCK_STREAM) as client:
         data = client.recv(1024)
         unp_data = packer.unpack(data)
         answerStr : str = unp_data[0].decode()
-        guessedNumber : int = unp_data[1]
 
-        print("Választ kaptam: (", answerStr, ", ", guessedNumber, ")")
-        AnalizeAnswer(answerStr, tippDirection, guessedNumber)
+        print("Választ kaptam: (", answerStr, ", ", guess, ")")
+        AnalizeAnswer(answerStr, tippDirection, guess)
         #time.sleep(5.0)
 
     #Amikor már a két szám egyenlő:

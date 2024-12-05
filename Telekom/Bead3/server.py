@@ -83,7 +83,7 @@ with socket(AF_INET, SOCK_STREAM) as server:
                             ongoingGame = False
                             print('Valaki kitalálta!')
                         print('A válaszom: ', answer)
-                        data = packer.pack(*(answer.encode(), guessedNumber))
+                        data = packer.pack(*(answer.encode(), 0))
                         sct.sendall(data) # visszaküldöm csak a kérdező kliensnek
                     else:
                         # Ha nem megy a játék akkor annyit kell visszaküldenem, hogy vége a játéknak
