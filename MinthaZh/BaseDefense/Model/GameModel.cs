@@ -12,6 +12,7 @@ namespace BaseDefense.Model
     public class GameModel
     {
         public const int GAME_SIZE = 8;
+        public const int ENEMY_DMG = 5;
 
         private FieldType[,]? GameTable;
         private Timer gameTimer;
@@ -23,9 +24,9 @@ namespace BaseDefense.Model
         public int BaseHp { get; private set; }
 
         public event EventHandler<FieldValueEventArgs>? FieldChanged;
-        public event EventHandler<int>? BaseHpChanged;
+        public event EventHandler? BaseHpChanged;
         public event EventHandler? GameOver;
-        public event EventHandler<int>? EnemyDied;
+        public event EventHandler? PointsForSoldierChanged;
 
         public GameModel()
         {
@@ -35,16 +36,9 @@ namespace BaseDefense.Model
             gameTimer = new Timer();
             gameTimer.AutoReset = true;
             gameTimer.Elapsed += GameTimer_Tick;
-            gameTimer.Interval = 3000;
+            gameTimer.Interval = 5000;
         }
-
-        private void GameTimer_Tick(object? sender, ElapsedEventArgs e)
-        {
-            StepEnemies();
-            SpawnEnemies();
-            SoldierAction();
-        }
-
+        #region Publikus metódusok
         public void NewGame()
         {
             gameTimer.Stop();
@@ -53,13 +47,12 @@ namespace BaseDefense.Model
             GameTable = new FieldType[GAME_SIZE, GAME_SIZE];
             for (int i = 0; i < GAME_SIZE; i++)
             {
-                GameTable[0, i] = FieldType.BASE;
+                SetField(i,0, FieldType.BASE);
             }
-            PointsForSoldier = 6;
-            BaseHp = 20;
-            BaseHpChanged?.Invoke(this, BaseHp);
+            ResetBaseAndPoints();
             gameTimer.Start();
         }
+        #region Mentés-Betöltés
         public void SaveGame()
         {
 
@@ -68,20 +61,44 @@ namespace BaseDefense.Model
         {
 
         }
-        public void PlaceSoldier(int X, int Y)
+        #endregion
+        public void Click(int X, int Y)
         {
-            if (GameTable![X, Y] == FieldType.EMPTY)
+            if (GameTable![X, Y] == FieldType.EMPTY && PointsForSoldier >= 3)
             {
                 SetField(X, Y, FieldType.SOLDIER);
                 soldierList.Add(new Point(X, Y));
+                AddPointsForSoldier(-3);
             }
         }
+        #endregion
 
+        #region Privát metódusok
+
+        #region Set metódusok
         private void SetField(int x, int y, FieldType type)
         {
             GameTable![x,y] = type;
             FieldChanged?.Invoke(this, new FieldValueEventArgs(x,y,type));
         }
+        private void ResetBaseAndPoints()
+        {
+            BaseHp = 100;
+            BaseHpChanged?.Invoke(this, EventArgs.Empty);
+            PointsForSoldier = 6;
+            PointsForSoldierChanged?.Invoke(this, EventArgs.Empty);
+        }
+        private void AddPointsForSoldier(int plus = 1)
+        {
+            PointsForSoldier += plus;
+            PointsForSoldierChanged?.Invoke(this, EventArgs.Empty);
+        }
+        private void DmgBase()
+        {
+            BaseHp -= ENEMY_DMG;
+            BaseHpChanged?.Invoke(this, EventArgs.Empty);
+        }
+        #endregion
         private void SpawnEnemies()
         {
             Random r = new Random();
@@ -93,6 +110,8 @@ namespace BaseDefense.Model
                 enemyList.Add(new Point(rowToSpawn, GAME_SIZE - 1));
             }
         }
+
+        #region Enemy és Soldier metódusok
         private void StepEnemies()
         {
             List<Point> toRemove = new List<Point>();
@@ -111,16 +130,43 @@ namespace BaseDefense.Model
                 }
                 else if (GameTable![enemyList[i].X, enemyList[i].Y - 1] == FieldType.BASE)
                 {
-                    BaseHp--;
-                    BaseHpChanged?.Invoke(this, BaseHp);
-                    if (BaseHp == 0)
+                    DmgBase();
+                    if (BaseHp <= 0)
                     {
                         gameTimer.Stop();
                         GameOver?.Invoke(this, EventArgs.Empty);
                     }
                 }
             }
+            foreach (Point enemy in toRemove)
+            {
+                KillEnemy(enemy.X, enemy.Y);
+            }
         }
+        private void SoldierAction()
+        {
+            foreach (Point soldier in soldierList)
+            {
+                try
+                {
+                    if (GameTable![soldier.X - 1, soldier.Y] == FieldType.ENEMY)
+                    {
+                        KillEnemy(soldier.X - 1, soldier.Y);
+                    }
+                } catch (IndexOutOfRangeException) { /*Index out of bounds*/}
+                try
+                {
+                    if (GameTable![soldier.X + 1, soldier.Y] == FieldType.ENEMY)
+                    {
+                        KillEnemy(soldier.X + 1, soldier.Y);
+                    }
+                }
+                catch (IndexOutOfRangeException) { }
+            }
+        }
+        #endregion
+
+        #region Kill metódusok
         private void KillSoldier(int X, int Y)
         {
             if (soldierList.Remove(new Point(X, Y)))
@@ -133,21 +179,16 @@ namespace BaseDefense.Model
             if(enemyList.Remove(new Point(X, Y)))
             {
                 SetField(X, Y, FieldType.EMPTY);
+                AddPointsForSoldier();
             }
         }
-        private void SoldierAction()
+        #endregion
+        private void GameTimer_Tick(object? sender, ElapsedEventArgs e)
         {
-            foreach (Point soldier in soldierList)
-            {
-                if (GameTable![soldier.X - 1, soldier.Y] == FieldType.ENEMY)
-                {
-                    KillEnemy(soldier.X - 1, soldier.Y);
-                }
-                if (GameTable![soldier.X + 1, soldier.Y] == FieldType.ENEMY)
-                {
-                    KillEnemy(soldier.X + 1, soldier.Y);
-                }
-            }
+            StepEnemies();
+            SpawnEnemies();
+            SoldierAction();
         }
+        #endregion
     }
 }

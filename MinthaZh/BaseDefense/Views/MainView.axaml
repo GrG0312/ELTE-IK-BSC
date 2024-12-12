@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:BaseDefense.ViewModels"
+             xmlns:main="clr-namespace:BaseDefense.ViewModels.MainViewModel"
              mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="1000"
              x:Class="BaseDefense.Views.MainView"
              x:DataType="vm:MainViewModel">
@@ -15,12 +16,12 @@
     </WrapPanel>
 
     <WrapPanel Grid.Row="2" Orientation="Horizontal">
-      <ProgressBar Value="{Binding Progress}"></ProgressBar>
-      <TextBox IsEnabled="False" Text="{Binding Points}"></TextBox>
+      <ProgressBar Value="{Binding BaseHP}"></ProgressBar>
+      <TextBox IsEnabled="False" Text="{Binding Points, Mode=OneWay}"></TextBox>
     </WrapPanel>
 
     <Viewbox Grid.Row="1" Width="800" Height="800">
-      <ItemsControl Width="800" Height="800" ItemsSource="{Binding Fields}">
+      <ItemsControl ItemsSource="{Binding Fields}">
         <ItemsControl.ItemsPanel>
           <ItemsPanelTemplate>
             <UniformGrid Rows="{Binding GameSize}" Columns="{Binding GameSize}">

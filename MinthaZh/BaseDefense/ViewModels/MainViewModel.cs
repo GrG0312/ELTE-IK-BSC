@@ -2,6 +2,7 @@
 using Avalonia.Threading;
 using BaseDefense.Model;
 using CommunityToolkit.Mvvm.Input;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -11,16 +12,8 @@ public partial class MainViewModel : ViewModelBase
 {
     private GameModel model;
 
-    private int progress;
-    public int Progress
-    {
-        get => progress;
-        private set
-        {
-            SetProperty(ref progress, value, nameof(Progress));
-        }
-    }
     public int GameSize { get => GameModel.GAME_SIZE; }
+    public int BaseHP { get => model.BaseHp; }
     public string Points { get => model.PointsForSoldier.ToString(); }
     public ObservableCollection<Field> Fields { get; private set; }
     public RelayCommand NewGameCommand { get; private set; }
@@ -31,7 +24,7 @@ public partial class MainViewModel : ViewModelBase
         this.model = m;
         model.FieldChanged += (object? sender, FieldValueEventArgs e) => Dispatcher.UIThread.Invoke(() => Model_FieldChanged(sender, e));
         model.BaseHpChanged += Model_BaseHpChanged;
-        model.EnemyDied += Model_EnemyDied;
+        model.PointsForSoldierChanged += Model_PointsChanged;
         NewGameCommand = new RelayCommand(() => 
         {
             NewGame();
@@ -39,28 +32,14 @@ public partial class MainViewModel : ViewModelBase
         NewGame();
     }
 
-    private void Model_EnemyDied(object? sender, int e)
+    #region Model Event Handlers
+    private void Model_PointsChanged(object? sender, EventArgs e)
     {
         OnPropertyChanged(nameof(Points));
     }
-
-    private void Model_BaseHpChanged(object? sender, int e)
+    private void Model_BaseHpChanged(object? sender, EventArgs e)
     {
-        Progress = (int)(e / 20f) * 100;
-    }
-
-    private void NewGame()
-    {
-        Fields.Clear();
-        for (int i = 0; i < GameModel.GAME_SIZE; i++)
-        {
-            for (int j = 0; j < GameModel.GAME_SIZE; j++)
-            {
-                Field f = new Field(i, j, (int X, int Y) => { model.PlaceSoldier(X,Y); });
-                Fields.Add(f);
-            }
-        }
-        model.NewGame();
+        OnPropertyChanged(nameof(BaseHP));
     }
     private void Model_FieldChanged(object? sender, FieldValueEventArgs e)
     {
@@ -82,5 +61,22 @@ public partial class MainViewModel : ViewModelBase
             default:
                 break;
         }
+    }
+    #endregion
+
+    private void NewGame()
+    {
+        Fields.Clear();
+        for (int i = 0; i < GameModel.GAME_SIZE; i++)
+        {
+            for (int j = 0; j < GameModel.GAME_SIZE; j++)
+            {
+                Field f = new Field(i, j, model.Click);
+                Fields.Add(f);
+            }
+        }
+        model.NewGame();
+        OnPropertyChanged(nameof(BaseHP));
+        OnPropertyChanged(nameof(Points));
     }
 }

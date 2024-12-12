@@ -30,6 +30,8 @@ public partial class App : Application
             {
                 DataContext = vm
             };
+            desktop.Exit += Desktop_Exit;
+            desktop.Startup += Desktop_Startup;
         }
         else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform)
         {
@@ -40,5 +42,15 @@ public partial class App : Application
         }
 
         base.OnFrameworkInitializationCompleted();
+    }
+
+    private void Desktop_Startup(object? sender, ControlledApplicationLifetimeStartupEventArgs e)
+    {
+        // töltsünk be egy automata mentést, ha van
+    }
+
+    private void Desktop_Exit(object? sender, ControlledApplicationLifetimeExitEventArgs e)
+    {
+        // mentsük el a játék állását
     }
 }
