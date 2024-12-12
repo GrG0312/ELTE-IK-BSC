@@ -178,7 +178,7 @@ create index ind1 on dolgozo(dnev);
 create unique index ind2 on dolgozo(dkod);
 create index ind3 on dolgozo(fizetes, foglalkozas);
 create index ind4 on dolgozo(belepes) reverse;
-create index ind8 on dolgozo(fizetes, desc);
+create index ind8 on dolgozo(fizetes desc);
 create index ind5 on dolgozo(foglalkozas, dnev) compress 1; -- az 1 hogy az elsõ hány db oszlopot szeretnénk tömöríteni
 create index ind6 on dolgozo(fizetes/12);
 create bitmap index ind7 on dolgozo(oazon); --<-- akkor használjuk, ha riktán módosuló adataink vannak

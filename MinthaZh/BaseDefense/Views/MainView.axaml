@@ -1,0 +1,46 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:BaseDefense.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="1000"
+             x:Class="BaseDefense.Views.MainView"
+             x:DataType="vm:MainViewModel">
+
+  <Grid RowDefinitions="Auto, Auto, Auto">
+    <WrapPanel Orientation="Horizontal" Grid.Row="0">
+      <Button Command="{Binding NewGameCommand}">New Game</Button>
+      <Button>Save Game</Button>
+      <Button>Load Game</Button>
+    </WrapPanel>
+
+    <WrapPanel Grid.Row="2" Orientation="Horizontal">
+      <ProgressBar Value="{Binding Progress}"></ProgressBar>
+      <TextBox IsEnabled="False" Text="{Binding Points}"></TextBox>
+    </WrapPanel>
+
+    <Viewbox Grid.Row="1" Width="800" Height="800">
+      <ItemsControl Width="800" Height="800" ItemsSource="{Binding Fields}">
+        <ItemsControl.ItemsPanel>
+          <ItemsPanelTemplate>
+            <UniformGrid Rows="{Binding GameSize}" Columns="{Binding GameSize}">
+            </UniformGrid>
+          </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+
+        <ItemsControl.ItemTemplate>
+          <DataTemplate>
+            <Button
+              Height="100"
+              Width="100"
+              Command="{Binding ClickCommand}"
+              CommandParameter="{Binding Coord}"
+              Background="{Binding BackgroundColor}"
+              IsEnabled="True"></Button>
+          </DataTemplate>
+        </ItemsControl.ItemTemplate>
+      </ItemsControl>
+    </Viewbox>
+    
+  </Grid>
+</UserControl>
