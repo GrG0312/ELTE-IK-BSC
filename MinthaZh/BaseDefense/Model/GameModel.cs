@@ -5,12 +5,15 @@ using System.Text;
 using System.Timers;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Diagnostics;
 
 namespace BaseDefense.Model
 {
     public enum FieldType { EMPTY, BASE, SOLDIER, ENEMY}
     public class GameModel
     {
+        private bool isGameOver;
+
         public const int GAME_SIZE = 8;
         public const int ENEMY_DMG = 5;
 
@@ -36,7 +39,7 @@ namespace BaseDefense.Model
             gameTimer = new Timer();
             gameTimer.AutoReset = true;
             gameTimer.Elapsed += GameTimer_Tick;
-            gameTimer.Interval = 5000;
+            gameTimer.Interval = 2000;
         }
         #region Publikus metódusok
         public void NewGame()
@@ -44,26 +47,35 @@ namespace BaseDefense.Model
             gameTimer.Stop();
             enemyList.Clear();
             soldierList.Clear();
+            isGameOver = false;
             GameTable = new FieldType[GAME_SIZE, GAME_SIZE];
             for (int i = 0; i < GAME_SIZE; i++)
             {
-                SetField(i,0, FieldType.BASE);
+                SetField(i, 0, FieldType.BASE); // x melyik sorba vagy, y melyik oszlopban
             }
             ResetBaseAndPoints();
             gameTimer.Start();
         }
+
         #region Mentés-Betöltés
-        public void SaveGame()
+        public async void SaveGame(string path)
         {
-
+            // átlagos mentési folyamat
+            // dobjunk exception-t, ha nem tudunk menteni valami miatt!
         }
-        public void LoadGame()
+        public async void LoadGame(string path)
         {
-
+            // átlagos betöltési folyamat
+            // dobjunk exception-t, ha nem tudjuk betölteni valami miatt!
         }
         #endregion
+
         public void Click(int X, int Y)
         {
+            if (isGameOver)
+            {
+                return;
+            }
             if (GameTable![X, Y] == FieldType.EMPTY && PointsForSoldier >= 3)
             {
                 SetField(X, Y, FieldType.SOLDIER);
@@ -102,11 +114,16 @@ namespace BaseDefense.Model
         private void SpawnEnemies()
         {
             Random r = new Random();
-            int enemiesToSpawn = r.Next(1, 5); // 1-4 enemy
+            int enemiesToSpawn = r.Next(1, 4); // 1-3 enemy
+            List<Point> occupied = new List<Point>();
             for (int i = 0; i < enemiesToSpawn; i++)
             {
-                int rowToSpawn = r.Next(0, GAME_SIZE);
-                SetField(GAME_SIZE - 1, rowToSpawn, FieldType.ENEMY);
+                int rowToSpawn;
+                do
+                {
+                    rowToSpawn = r.Next(0, GAME_SIZE);
+                } while (occupied.Contains(new Point(rowToSpawn, GAME_SIZE - 1)));
+                SetField(rowToSpawn, GAME_SIZE - 1, FieldType.ENEMY);
                 enemyList.Add(new Point(rowToSpawn, GAME_SIZE - 1));
             }
         }
@@ -130,9 +147,11 @@ namespace BaseDefense.Model
                 }
                 else if (GameTable![enemyList[i].X, enemyList[i].Y - 1] == FieldType.BASE)
                 {
+                    toRemove.Add(enemyList[i]);
                     DmgBase();
                     if (BaseHp <= 0)
                     {
+                        isGameOver = true;
                         gameTimer.Stop();
                         GameOver?.Invoke(this, EventArgs.Empty);
                     }
@@ -161,7 +180,7 @@ namespace BaseDefense.Model
                         KillEnemy(soldier.X + 1, soldier.Y);
                     }
                 }
-                catch (IndexOutOfRangeException) { }
+                catch (IndexOutOfRangeException) { /*Index out of bounds*/ }
             }
         }
         #endregion

@@ -22,7 +22,8 @@ public partial class MainViewModel : ViewModelBase
         Fields = new ObservableCollection<Field>();
 
         this.model = m;
-        model.FieldChanged += (object? sender, FieldValueEventArgs e) => Dispatcher.UIThread.Invoke(() => Model_FieldChanged(sender, e));
+        model.FieldChanged += (object? sender, FieldValueEventArgs e) 
+            => Dispatcher.UIThread.Invoke(() => Model_FieldChanged(sender, e));
         model.BaseHpChanged += Model_BaseHpChanged;
         model.PointsForSoldierChanged += Model_PointsChanged;
         NewGameCommand = new RelayCommand(() => 

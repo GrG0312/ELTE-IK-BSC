@@ -1,0 +1,113 @@
+﻿1. Mit hívunk statikus és dinamikus adatbázisnak?
+Statikus: ritkán módosul, lekérdezések sebessége a fontos
+Dinamikus: gyakran módosul, ritkán kérdezünk le
+ztz
+
+2. Mi lehet 3 cél, amire indexelés kiválasztásánál figyelni kell?
+Keresési idő (gyorsabb legyen a lekérdezés)
+Módosítási idő (gyorsabb legyen a módosulási idő)
+Tárméret (kisebb legyen a tárméret)
+Például indexek használatával csökken a keresési idő, de a tárméret és módosulási idő nő
+ztz
+
+3. Mivel arányos a beolvasás/kiírás költsége?
+A memória és a háttértár között mozgatott blokkok számával.
+ztz
+
+4. Mit jelentenek az alábbi paraméterek? { l, b, B, T, bf, M, I(A) }
+l: (length) rekordméret bájtokban
+b: blokkméret bájtokban
+B: fájl mérete blokkokban, B = T/bf felső egésze
+T: (Tuple) rekordok száma
+bf: blokkolási faktor, rekord/blokk, bf = b/l alsó egésze
+M: memória mérete blokkokban
+I(A): képméret, A oszlopban szereplő különböző értékek száma
+ztz
+
+5. Adjuk meg RxS méretét blokkokban kifejezve! (RxS: R és S táblák crossjoin-ja)
+B(RxS) = T(RxS) / bf(RxS), ahol
+T(RxS) = T(R) * T(S) és
+bf(RxS) = b / (l(R) + l(S))
+tehát:= B(RxS) = T(R) * T(S) * (l(R) + l(S)) / b = T(S) * B(R) + T(R) * B(S)
+ztz
+
+6. Mi az egyenletességi feltétel?
+Az A=a feltételnek eleget tevő rekordokból nagyjából egyenlő számú szerepel,
+ahol 'A' egy keresési mező, 'a' egy konstans
+ztz
+
+7. Mekkora adategységet olvas az író-olvasó fej?
+Blokkokat olvas, tehát a blokk méretének megfelelőt
+ztz
+
+8. Mitől függhet a blokkméret?
+Oprendszertől, a hardvertől, az adatbázis-kezelő rendszertől
+ztz
+
+9. Egyenletességi feltétel esetén hány blokkból áll a ROˇ[A=a](R) lekérdezés eredménye? Másnéven sA=a(R)
+B(-||-) = B(R) / I(A)
+ztz
+
+10. Sorolj felegalább 7 különböző fájlszervezési módszert!
+kupac
+hasító index
+rendezett állomány
+elsődleges index
+másodlagos index
+többszintű index
+B+ vagy B* fa
+ztz
+
+11. Kupac szervezés esetén mennyi a keresés költsége legrosszabb esetben?
+A = a keresés költsége legrosszabb esetben B
+ztz
+
+12. Kupac szervezés esetén mennyi a beszúrás kötlsége
+Utolsó blokkba beszúrunk: 1 olvasás + 1 írás
+Módosítunk: 1 keresés + 1 írás
+Törlés: 1 keresés + 1 írás (vagy üresre vagy törlési bitre)
+A keresés költsége A=a mellett maximum B, átlagosan B/2
+ztz
+
+13. Mit mond meg a h(x) hasító függvény értéke?
+h(x) eleme {1..K} mondja meg, hogy melyik kosárba tartozik majd a rekord, ha x az indexmező értéke a rekordban
+(K az indexmezők értékeinek száma)
+ztz
+
+14. Mikor jó egy hasítófüggvény és ilyenkor milyen hosszúak a blokkláncok?
+Akkor jó, ha nagyjából egyforma hosszú blokkláncok keletkeznek, egyenletesen sorolja be a rekordokat
+ztz
+
+15. Mennyi a ROˇ[A=a](R) keresés költsége jó hasító index esetén?
+Elég a h(a) sorszámú kosarat végignézni, ez egy B/K blokkból álló kupacnak felel meg, tehát B/K lehet legrosszabb esetben a költség
+(K az indexmezők értékeinek száma)
+ztz
+
+16. Ha túl nagynak választjuk K-t hasításkor, akkor ez milyen problémát okozhat?
+Nagy K esetén sok blokklánc lehet, ami 1 blokkból fog állni, ebben a blokkban is csak 1 rekord lesz.
+És bár igaz, hogy 1 blokkban kell csak az értéket keresni, de B helyett közel T darab blokkban fogjuk tárolni ezen értékeket.
+ztz
+
+17. Milyen keresésre nem jó a hasító indexelés?
+Intervallumos keresésre
+Pl a < A < b
+ztz
+
+18. Mit jelent a dinamikus hasító indexelés? Milyen 2 fajtája van?
+A kosarak száma nem rögzített, beszúráskor/törléskor változhat.
+A két fajtája: Kiterjeszthető és Lineáris hasító index
+ztz
+
+19. Kiterjeszthető hasítás esetén h(K) érték alapján melyik kosárba kerül a rekord?
+A h(K) k hosszú kódnak vegyük az i hosszú elejét, illetve azt a kosarat, amelynek kódja h(K) kezdő szelete.
+Ha ebben van hely beletesszük, ha nincs, nyissunk új kosarat, majd az i+1. bit alapján osszuk ketté a telített kosár rekordjait.
+Ha ez a bit megegyezik akkor vegyük a következőt.
+ztz
+
+20. Milyen probléma keletkezhet kiterjesztő hasító index esetén? Mi rá a megoldás?
+Ha az új sorok hasító értékének eleje sok bitben megegyezik, akkor hosszú ágak keletkezhetnek, ergo nincs kiegyensúlyozva a fa
+ztz
+
+21. Lineáris hasító index esetén mikor nyitunk meg új kosarat?
+Ha egy előre meghatározott értéket elér a kosarakra jutó átlagos rekordszám
+ztz

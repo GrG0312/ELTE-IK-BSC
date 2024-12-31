@@ -179,6 +179,7 @@ public class Sheep extends ConsciousObject {
     }
 
     private void ExecuteMove(int[] vector){
+        //if ...
         synchronized(farmField[myPosX][myPosY]){
             synchronized(farmField[myPosX + vector[0]][myPosY + vector[1]]){
                 if(farmField[myPosX + vector[0]][myPosY + vector[1]] instanceof EmptyObject){
