@@ -14,12 +14,7 @@
                 {
                     break;
                 }
-                bool shouldLeave = ProgressRun(current);
-                if (shouldLeave)
-                {
-                    break;
-                }
-
+                ProgressRun(current);
             }
         }
 
@@ -50,7 +45,11 @@
         public static Run? InitRun()
         {
             Console.Clear();
-            Console.WriteLine("To start a new Run, type [start question index]-[end question index]\nTo stop a Run or exit the program anytime, type \"exit\"");
+            Console.WriteLine("How to use:");
+            Console.WriteLine("1-60: Get the questions from the 1st to the 60th");
+            Console.WriteLine("full: Get all the questions");
+            Console.WriteLine("exit: Stop the run");
+            DisplayChapters();
             string? input;
             bool shouldLeave = false;
             do
@@ -87,27 +86,52 @@
             } while (!shouldLeave);
             return null;
         }
-        public static bool ProgressRun(Run current)
+        public static void ProgressRun(Run current)
         {
             int counter = 0;
-            bool shouldLeave = false;
-            while (!current.IsOver || shouldLeave)
+            while (!current.IsOver)
             {
                 counter++;
                 Console.Clear();
                 Question cq = current.Next();
                 Console.WriteLine($"[{counter}/{current.Length}] " + cq.Text);
-                shouldLeave |= WaitForInput();
+                if (WaitForInput())
+                {
+                    break;
+                }
                 Console.Clear();
                 Console.WriteLine($"[{counter}/{current.Length}] " + cq.ToString());
-                shouldLeave |= WaitForInput();
+                if (WaitForInput())
+                {
+                    break;
+                }
             }
-            return shouldLeave;
         }
         public static bool WaitForInput()
         {
             string? input = Console.ReadLine();
             return input?.Trim().ToLower() == "exit";
+        }
+
+        public static void DisplayChapters()
+        {
+            Console.WriteLine("\n----- CHAPTERS -----");
+            Console.WriteLine("Alap fogalmak:                   1-9");
+            Console.WriteLine("Fájlszervezés, kupacok:          10-12");
+            Console.WriteLine("Hasító indexelés:                13-22");
+            Console.WriteLine("Rendezett állomány:              23-26");
+            Console.WriteLine("Elsődleges / másodlagos indexek: 27-31");
+            Console.WriteLine("Klaszterezés:                    33-35");
+            Console.WriteLine("t-szintű indexelés:              36-41");
+            Console.WriteLine("B+ fa és példák:                 42-49");
+            Console.WriteLine("Bitmap példák:                   50-51");
+            Console.WriteLine("Relációs algebrai optimalizálás: 52-84");
+            Console.WriteLine("Újabb jelölések:                 91-92");
+            Console.WriteLine("Átlagos költség:                 93-95");
+            Console.WriteLine("Lekérdezések kiszámolási módja:  96-97");
+            Console.WriteLine("Rendezések:                      98-108");
+            Console.WriteLine("Összekapcsolások:                109-117");
+            Console.WriteLine("Hány sora van a lekérdezésnek:   118-126");
         }
     }
 }

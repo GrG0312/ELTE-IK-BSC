@@ -8,7 +8,7 @@ namespace Questions
 {
     public class Run
     {
-        public int Length { get { return questions.Count; } }
+        public int Length { get; }
         public bool IsOver { get; private set; }
         private List<Question> questions;
         private Random r;
@@ -16,6 +16,7 @@ namespace Questions
         public Run(List<Question> q)
         {
             questions = new List<Question>(q);
+            Length = questions.Count;
             r = new Random();
             IsOver = questions.Count <= 0;
         }

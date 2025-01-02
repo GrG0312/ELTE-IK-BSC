@@ -62,7 +62,7 @@ ztz
 A = a keresés költsége legrosszabb esetben B
 ztz
 
-12. Kupac szervezés esetén mennyi a beszúrás kötlsége
+12. Kupac szervezés esetén mennyi a beszúrás költsége
 Utolsó blokkba beszúrunk: 1 olvasás + 1 írás
 Módosítunk: 1 keresés + 1 írás
 Törlés: 1 keresés + 1 írás (vagy üresre vagy törlési bitre)
@@ -106,8 +106,563 @@ ztz
 
 20. Milyen probléma keletkezhet kiterjesztő hasító index esetén? Mi rá a megoldás?
 Ha az új sorok hasító értékének eleje sok bitben megegyezik, akkor hosszú ágak keletkezhetnek, ergo nincs kiegyensúlyozva a fa
+A megoldás: a gráfot teljessé tehetjük. Tömbbel ábrázolva minden kosár azonos szinten lesz, de közös blokk is lehet kosár.
+Túlcsordulás esetén a kosarak száma duplázódik.
 ztz
 
 21. Lineáris hasító index esetén mikor nyitunk meg új kosarat?
 Ha egy előre meghatározott értéket elér a kosarakra jutó átlagos rekordszám
+ztz
+
+22. Lineáris hasító index esetén h(K) szerint melyik kosárba kerül a rekord?
+Ha n kosarunk van: h(K) utolsó log(n) bitjével megegyező sorszámú kosárba (ha ebben nincs hely akkor hozzáláncolunk egy blokkot)
+Ha nincs megfelelő kosár, akkor abba kerül, amely sorszáma csak az első bitjében különbözik
+ztz
+
+23. Rendezett állomány alapján adjuk meg a bináris/logaritmikus keresés lépéseit!
+Megnézzük, hogy a középső blokkban szerepel-e az A=a értékű rekord
+Ha nem, eldöntjuk hogy az előtte vagy utána lévő blokkokban lehet-e, majd ezeknek a közepét fogjuk megnézni
+Ez addig megy, ameddig meg nem találjuk a rekordot, vagy csak 1 darab blokk marad
+ztz
+
+24. Mennyi a keresési költség rendezett mező esetében?
+log2(B)
+ztz
+
+25. Mennyi a keresési költség rendezett mező esetében, ha gyűjtő blokkokat is használunk?
+Ha a gyűjtő blokkban találjuk meg: log2(B-G) + G
+Amúgy: log2(B - G)
+ztz
+
+26. Mennyi a keresési költség rendezett mező esetében, ha minden blokkot félig üresen hagyunk?
+1 + log2(B)
+ztz
+
+27. Milyen mindig az indexrekord szerkezete?
+Egy (a,p) tuple, ahol:
+'a' egy érték az indexelt oszlopban
+'p' egy mutató arra a blokkra, ahol A=a értékű rekordot tároljuk
+[Mindig rendezett 'a' szerint]
+ztz
+
+28. Elsődleges index 5 jellemzője?
+Főfájl rendezett
+Csak 1 elsődleges indexet lehet megadni (egy szerint lehet rendezni a főfájlt)
+Elég a főfájl minden blokkjának legkisebb indexéhez készíteni indexrekordot
+Indexrerkordok száma: T(I) = B (ritka index)
+Indexrekordból sokkal több fér egy blokkba, mint a főfájl rekordjaiból (indexfájl sokkal rendezettebb) bf(I) >> bf
+ztz
+
+29. Mit hívunk fedőértéknek?
+Legnagyobb olyan indexérték, amely keresettnél kisebb vagy egyenlő
+ztz
+
+30. Mennyi a keresési költség elsődleges index esetén?
+1 + log2(B(I))
+ztz
+
+31. Adjuk meg a másodlagos index 5 jellemzőjét!
+Főfájl rendezetlen, indexfájl rendezett
+Több másodlagos index is lehetséges
+Főfájl minden rekordjához kell indexet készíteni
+Indexrekordok száma: T(I) = T
+Indexrekordból sokkal több fér egy blokkba, mint a főfájl rekordjaiból (indexfájl sokkal rendezettebb) bf(I) >> bf
+ztz
+
+32. Hogyan keresünk a másodlagos indexben és mennyi a keresés költsége?
+A rendezettség miatt bináris kereséssel keresünk: log2(B(I))
+A keresés találata egy indexrekord, az ez által jelölt blokkot még be kell olvasni: 1 + log2(B(I))
+Az elsődleges indexnél rosszabb a keresési idő, mert több az indexrekord
+ztz
+
+33. Mit hívunk klaszterszervezésű táblának?
+Klaszterszervezés egy tábla A oszlopára: az azonos A-értékű sorok fizikailag egymás utáni blokkokban vannak
+Ezzel a cél hogy minden találatot egy soros beolvasással megkapjunk
+ztz
+
+34. Mit hívunk klaszterindexnek?
+Egy klaszterszervezésű fájl A oszlopára indexelés
+ztz
+
+35. Mikor mondjuk, hogy 2 tábla klaszterszervezésű?
+Két tábla esetén az összes közös oszlopon szervezünk klasztereket
+Ekkor a két oszlop összes közös eleme hasonlóan az egy táblás módszerhez, fizikailag egymás után helyezkednek el
+ztz
+
+36. Ha t szintű indexet használunk, mennyi a keresési költség blokkműveletek számában mérve?
+log2(B(I^t)) + t db blokkolvasás
+ztz
+
+37. Ha t szintű indexet használunk, a legfelső szinten milyen keresést használunk?
+I^t bináris kereséssel keressük meg a fedő indexrekordot
+ztz
+
+38. Ha t szintű indexet használunk és a legfelső szint 1 blokkból áll, akkor mennyi a keresési költség?
+Az t+1 darab beolvasást jelent:
+log2(B(I^t)) + t + 1
+ztz
+
+39. Ha t szintű indexet használunk, mennyi az indexszintek blokkolási faktora és miért?
+Minden szint blokkolási faktora ugyanakkora, mert megegyezik a blokkolási faktor
+ztz
+
+40. Ha t szintű indexet használunk, vezessük le, hogy hány blokkból áll a legfelső szint!
+A főfájl: B blokk
+1. szint: B / bf(I)
+2. szint: B / bf(I)^2
+t. szint: B / bf(I)^t
+ztz
+
+41. Ha t szintű indexet használunk, és a legfelső szint 1 blokkból áll, abból milyen egyenlet következik és mi a megoldása t-re?
+Ha a t. szint 1 blokk, akkor 1 = B / bf(I^t)
+Azaz t = log[bf(I^t)](B) < log2(B)
+ztz
+
+42. Mi a két legfontosabb jellemzője a B+-faindexnek?
+Minden blokk minimum 50%-os telítettségű
+A telítettségi algoritmusok is részei
+ztz
+
+43. Egy példa alapján szemléltessük a köztes csúcs jellemzőit B+-fa index esetén!
+Egy n értékű B+ fa esetén egy köztes csúcsban n db indexérték van, és ezekhez n+1 db mutató
+A mutatók a hozzájuk tartozó indexértékeknél nagyobb-egyenlőek, illetve kisebbek
+ztz
+
+44. Egy példa alapján szemléltessük a levél csúcs jellemzőit B+-fa index esetén!
+Egy levélben n indexértékhez tartoznak a blokkjaikra mutató pointerek, és az n+1. pointer a következő testvérre mutat
+ztz
+
+45. Mutassunk példát, mikor beszúráskor egy levélcsúcsot kettéosztunk B+-fa index esetén!
+Hozzáadod az indexértéket, ha megtelt, felezel, és a szülőbe bekerül a második levél legkisebb eleme.
+ztz
+
+46. Mutassunk példát, mikor beszúráskor egy köztes csúcsot kettéosztunk B+-fa index esetén!
+Ha megtelt egy belső csúcs mutatóinak száma, kettéosztjuk. A kettéosztott csúcs második felének első indexe felkerül a szülőbe.
+A szülőben így +1 lesz, az első belsőben n/2, a másodikban n/2 - 1
+ztz
+
+47. Mutassunk példát, mikor beszúráskor nő a B+-fa index magassága!
+Ha a gyökér csúcs megtelik, ugyanaz az eljárás mint egy belső csúcsnál
+ztz
+
+48. Mutassunk példát, mikor törléskor megszüntetünk egy levélcsúcsot B+-fa index esetén!
+Törlésnél, ha egy indexérték maradna a csúcsban, akkor összevonjuk valamelyik testvérrel, lehetőleg a jobboldalival.
+Ne felejtsük el frissíteni a szülőcsúcsot
+ztz
+
+49. Mutassunk példát, mikor törléskor csökken a B+-fa index magassága!
+Ha a gyökér csúcsnak a 2 gyerekét eggyé összevonjuk.
+ztz
+
+50. Mutassunk példát arra, mikor egy kevés elemszámú oszlopra bitmap indexet készítünk!
+Egy A oszlopban szerepelhet mondjuk a,b és c érték. Az 'a' alapú bitmap indexben T sor lesz, és ahol A=a igaz, ott 1, amúgy 0 érték lesz.
+A 'b' és 'c' alapú bitmap indexeknél ez a feltétel A=b és A=c lesz.
+ztz
+
+51. Mutassunk példát arra, mikor logikai feltételek kiértékelését bitmap vektorműveletekre vezetjük vissza!
+Logikai AND és OR műveleteknél minden sor értékpárjaira el kell végezni a műveletet, így az eredmény egy ugyanúgy T hosszú vektor.
+ztz
+
+52. Mi a lekérdezések optimalizálásának a célja és miket használunk fel ehhez?
+Gyorsabbá akarjuk tenni a lekérdezéseket.
+Ehhez felhasználjuk az általános érvényű tulajdonságokat, heurisztikákat.
+ztz
+
+53. Adjuk meg a lekérdezések optimalizálásának folyamatábráját!
+SQL lekérdezés -> 
+Elemzés (elemző fa) -> 
+Átalakítás (logikai lekérdező terv) ->
+Szabályok alkalmazása (javított llt.) ->
+Méretek becslése (llt és méretek) ->
+Fizikai terv készítése {FT1,FT2...} ->
+Költségbecslés {(FT1,K1),(FT2,K2)...} ->
+Legjobb kiválasztása {FTi} ->
+Végrehajtás
+ztz
+
+54. Adjuk meg egy egyszerű relációs algebrai kifejezést és gráfos ábrázolását!
+A gráfos ábrázolás gyökere a legalacsonyabb rangú művelet (amit utoljára végzel el)
+PI = vetítés/projekció (faszság, mert amúgy PI[x](R) esetén x oszlopot választod ki R táblából)
+RO = szűrés (RO[x=1](R) R táblának azon sorait szűröd ki, ahol x oszlop értéke 1)
+P (ami nem az de P) = átnevezés (P[új_tábla_név(új_oszlop_nevek*)](R) R táblát és oszlopait átnevezed)
+ztz
+
+55. Milyen költségmodellt használunk relációs algebrai optimalizálás esetében?
+Kiszámítás költsége arányos:
+	azon relációk tárolási költségeivel, amik megfeleltethetők az ALGEBRAI ALAK RÉSZKIFEJEZÉSEINEK
+ztz
+
+56. Mi a módszer lényege relációs algebrai optimalizálás esetében?
+Ekvivalens átalakítások alkalmazása, hogy kisebb méretű relációk keletkezzenek
+ztz
+
+57. Miért mondjuk, hogy az eljárás heurisztikus relációs algebrai optimalizálás esetén?
+Nem az argumentumok valódi méretével számol
+ztz
+
+58. Miért nem egyértelmű az eredmény relációs algebrai optimalizálás esetén?
+Átalakítások sorrendje nem determinisztikus (más sorrend = más eredmény)
+Általában akármilyen sorrendben hajtjuk őket végre, jobb költséget kapunk eredményül, mint amiből indultunk
+ztz
+
+59. A relációs algebrai kifejezésfában melyek az unáris csúcsok?
+Unáris = 1 paramétert vár el
+Pi, Ro, P (projekció(kiválasztás), szűrés, átnevezés)
+ztz
+
+60. A relációs algebrai kifejezésfában melyek a bináris csúcsok?
+Bináris = 2 paramétert vár el
+-, u, x (kivonás, unió, szorzás)
+ztz
+
+61. A relációs algebrai kifejezésfában mik a levélcsúcsok?
+Konstans relációk, vagy relációs változók
+ztz
+
+62. Mit hívunk ekvivalens relációs algebrai kifejezéseknek?
+E1 és E2 relációs algebrai kifejezések ekvivalensek,
+ha tetszőleges relációkat véve E1(r1,...,rk) ~= E2(r1,...,rk)
+ztz
+
+63. Hány szabálycsoportot adunk meg relációs algebrai optimalizáláskor és mi jellemző ezekre?
+11 szabálycsoport
+Megfogalmazzák kifejezések ekvivalenciáját
+Könnyen bizonyíthatók
+Az állítások egy részében a kifejezések szintaktikus helyessége egyben elégséges feltétele az ekvivalenciának
+ztz
+
+64. Adjuk meg a relációs algebrai optimalizálás kommutatív szabályait!
+E1 ° E2 ~= E2 ° E1
+ahol ° = x, |x|, |x|0
+ztz
+
+65. Adjuk meg a relációs algebrai optimalizálás asszociatív szabályait!
+(E1 ° E2) ° E3 ~= E1 ° (E2 ° E3)
+ahol ° = x, |x|, |x|0
+ztz
+
+66. Adjuk meg a vetítésre(kiválasztásra) vonatkozó összevonási, bővítés szabályt relációs algebrai optimalizálás esetén!
+Ha A és B részhalmaza E reláció oszlopainak, és A részhalmaza B-nek:
+Pi[A](Pi[B](E)) = Pi[A](E)
+ztz
+
+67. Adjuk meg a kiválasztások felcserélhetőségére, felbontására vonatkozó szabályt relációs algebrai optimalizálás esetén!
+F1 és F2 az E reláció oszlopain értelmezett kiválasztási feltételek
+RO[F1 és F2](E) ~= RO[F1](RO[F2](E)) ~= RO[F2](RO[F1](E))
+ztz
+
+68. Adjuk meg a kiválasztás és vetítés felcserélhetőségére vonatkozó szabályt relációs algebrai optimalizálás esetén!
+F az E reláció A oszlopán értelmezett kiv.feltétel
+PI[A](RO[F](E)) ~= RO[F](PI[A](E))
+ztz
+
+69. Adjuk meg a kiválasztás és vetítés felcserélhetőségére vonatkozó általánosított szabályt rel. algebrai optimalizálás esetén!
+Általínosítva: F az E reláció A U B oszlopán értelmezett kiválasztási feltétel, ahol A METSZET B = 0 (üres)
+PI[A](RO[F](E)) ~= PI[A](RO[F](PI[AUB](E)))
+ztz
+
+70. Adjuk meg a kiválasztás és szorzás felcserélhetőségére vonatkozó szabályt relációs algebrai optimalizálás esetén!
+Legyen F az E1 oszlopai részhalmazán értelmezett kiválasztási feltétel
+RO[F](E1 x E2) ~= RO[F](E1) x E2
+ztz
+
+71. Adjuk meg a kiválasztás és szorzás felcserélhetőségére vonatkozó speciális szabályt relációs algebrai optimalizálás esetén!
+Legyen F1 az E1 és F2 az E2 oszlopai részhalmazán értelmezett kiv.felt., és F = F1 és F2
+RO[F](E1 x E2) ~= RO[F1](E1) x RO[F2](E2)
+ztz
+
+72. Adjuk meg a kiválasztás és szorzás felcserélhetőségére vonatkozó általánosított szabályt rel. algebrai optimalizálás esetén!
+Legyen F1 E1 és F2 E1xE2 oszlopai részhalmazán egy kiv. felt.. F2-bwn mindkét sémából legalább egy oszlop szerepel.
+RO[F1 és F2](E1xE2) ~= RO[F2](RO[F1](E1) x E2)
+ztz
+
+73. Adjuk meg a kiválasztás és egyesítés(unió) felcserélhetőségére vonatkozó szabályt relációs algebrai optimalizálás esetén!
+E1 és E2 relációk sémája megegyező, F közös sémán értelmezett kiv.felt.
+RO[F](E1 U E2) ~= RO[F](E1) U RO[F](E2)
+ztz
+
+74. Adjuk meg a kiválasztás és természetes összekapcsolás felcserélhetőségére vonatkozó szabályt relációs algebrai optimalizálás esetén!
+F az E1 és E2 közös oszlopainak egy részhalmazán értelmezett kiv.felt.
+RO[F](E1 |x| E2) ~= RO[F](E1) |x| RO[F](E2)
+ztz
+
+75. Adjuk meg a vetítés és szorzás felcserélhetőségére vonatkozó szabályt relációs algebrai optimalizálás esetén!
+A1 E1 reláció oszlopainak egy halmaza, A2 E2 reláció oszlopainak egy halmaza
+PI[A1 U A2](E1 x E2) ~= PI[A1](E1) x PI[A2](E2)
+ztz
+
+76. Adjuk meg a vetítés és egyesítés felcserélhetőségére vonatkozó szabályt relációs algebrai optimalizálás esetén!
+PI[A1 U A2](E1 U E2) ~= PI[A1](E1) U PI[A2](E2)
+ztz
+
+77. Mutassunk példát, hogy a kivonás és a vetítés nem felcserélhető!
+PI[A](E1 - E2) != PI[A](E1) - PI[A](E2)
+ztz
+
+78. Fogalmazzuk meg a relációs algebrai optimalizálás 4 heurisztikus elvét!
+-Szelektálás minél hamarabb
+-Természetes összekapcsolások preferálása
+-Egymás utáni műveletek összevonása
+-Keressünk közös részkifejezéseket
+ztz
+
+79. Miért érdemes hamarabb szelektálni relációs algebrai optimalizálás esetén?
+A részkifejezések várhatóan kisebb relációk lesznek
+ztz
+
+80. Miért érdemes természetes összekapcsolásokat képezni szorzások helyett relációs algebrai optimalizálás esetén?
+Mert egyből összekapcsolni hatékonyabb, mint a szorzatból kiválogatni az egyezéseket
+ztz
+
+81. Miért érdemes az unáris műveleteket összevonni relációs algebrai optimalizálás esetén?
+Így csökken a műveletek száma, és általában a kiválasztás kisebb relációt eredményez, mint a vetítés
+ztz
+
+82. Miért érdemes a közös részkifejezéseket megkeresni relációs algebrai optimalizálás esetén?
+Mert ezeket így elég csak egyszer kiszámolni
+ztz
+
+83. A relációs algebrai optimalizálás algoritmusának mi az inputja és mi az outputja?
+INPUT: Relációs algebrai kifejezés kifejezésfája
+OUTPUT: Optimalizált kifejezésfa optimalizált kiértékelése
+ztz
+
+84. Mik a relációs algebrai optimalizálás algoritmusának lépései?
+1. Kiválasztások felbontása
+2. Kiválasztások minnél mélyebbre vitele
+3. Vetítések minnél mélyebbre vitele
+4. Egymás utáni kiválasztások/vetítések összevonása (lehetőleg kiválasztásból való vetítéssé)
+	-> optimálizált kifejezésfa
+5. A gráf / kifejezésfa bináris műveletek alapján részgráfokra bontása
+6. Az így kapott fa alulról felfelé történő, tetszőleges sorrendű kiértékelése
+ztz
+
+85. Mik a relációs algebrai optimalizálás algoritmusának lépései?
+1. Kiválasztások felbontása
+2. Kiválasztások minnél mélyebbre vitele
+3. Vetítések minnél mélyebbre vitele
+4. Egymás utáni kiválasztások/vetítések összevonása (lehetőleg kiválasztásból való vetítéssé)
+	-> optimálizált kifejezésfa
+5. A gráf / kifejezésfa bináris műveletek alapján részgráfokra bontása
+6. Az így kapott fa alulról felfelé történő, tetszőleges sorrendű kiértékelése
+ztz
+
+86. Mik a relációs algebrai optimalizálás algoritmusának lépései?
+1. Kiválasztások felbontása
+2. Kiválasztások minnél mélyebbre vitele
+3. Vetítések minnél mélyebbre vitele
+4. Egymás utáni kiválasztások/vetítések összevonása (lehetőleg kiválasztásból való vetítéssé)
+	-> optimálizált kifejezésfa
+5. A gráf / kifejezésfa bináris műveletek alapján részgráfokra bontása
+6. Az így kapott fa alulról felfelé történő, tetszőleges sorrendű kiértékelése
+ztz
+
+87. Mik a relációs algebrai optimalizálás algoritmusának lépései?
+1. Kiválasztások felbontása
+2. Kiválasztások minnél mélyebbre vitele
+3. Vetítések minnél mélyebbre vitele
+4. Egymás utáni kiválasztások/vetítések összevonása (lehetőleg kiválasztásból való vetítéssé)
+	-> optimálizált kifejezésfa
+5. A gráf / kifejezésfa bináris műveletek alapján részgráfokra bontása
+6. Az így kapott fa alulról felfelé történő, tetszőleges sorrendű kiértékelése
+ztz
+
+90. Adjunk meg egy példát, amiben a vetítések bővítése trükköt alkalmazzuk és indokoljuk, hogy mire jó ez!
+A bővített vetítéseket mélyebbre tudjuk vinni a fában, mint az eredeti vetítést
+Pl. PI[A]( RO[E1.B = E2.B] (E1 x E2)) itt ha bővítünk PI[A,E1.B,E2.B]-re, akkor ezt mélyebbre tudjuk vinni
+ztz
+
+88. Mik a relációs algebrai optimalizálás algoritmusának lépései?
+1. Kiválasztások felbontása
+2. Kiválasztások minnél mélyebbre vitele
+3. Vetítések minnél mélyebbre vitele
+4. Egymás utáni kiválasztások/vetítések összevonása (lehetőleg kiválasztásból való vetítéssé)
+	-> optimálizált kifejezésfa
+5. A gráf / kifejezésfa bináris műveletek alapján részgráfokra bontása
+6. Az így kapott fa alulról felfelé történő, tetszőleges sorrendű kiértékelése
+ztz
+
+89. Mik a relációs algebrai optimalizálás algoritmusának lépései?
+1. Kiválasztások felbontása
+2. Kiválasztások minnél mélyebbre vitele
+3. Vetítések minnél mélyebbre vitele
+4. Egymás utáni kiválasztások/vetítések összevonása (lehetőleg kiválasztásból való vetítéssé)
+	-> optimálizált kifejezésfa
+5. A gráf / kifejezésfa bináris műveletek alapján részgráfokra bontása
+6. Az így kapott fa alulról felfelé történő, tetszőleges sorrendű kiértékelése
+ztz
+
+91. Mennyi az SC(A,R) szelektivitás értéke, ha A kulcs?
+SC(A,R) = 1, ha A kulcs
+
+NR: rekordok száma R-ben (number of records)
+LR: rekord mérete R-ben
+FR: blocking factor, rekordok száma egy lapon
+BR: lapok száma R-ben
+V(A,R): A oszlopbeli disztinkt értékek száma R-ben
+SC(A,R): kiválasztás számossága? A-nak R-ben
+HTi: index szintjeinek száma
+ztz
+
+92. Mennyi az SC(A,R) szelektivitás értéke, ha A nem kulcs (a jelölések magyarázatát is adjuk meg)?
+SC(A,R) = NR / V(A,R), tehát a rekordok száma osztva a különböző értékek mennyiségével
+
+NR: rekordok száma R-ben (number of records)
+LR: rekord mérete R-ben
+FR: blocking factor, rekordok száma egy lapon
+BR: lapok száma R-ben
+V(A,R): A oszlopbeli disztinkt értékek száma R-ben
+SC(A,R): kiválasztás számossága? A-nak R-ben
+HTi: index szintjeinek száma
+ztz
+
+93. Mennyi rendezett táblában a bináris keresés átlagos költsége, ha minden találatot be kell olvasni (a jelölések magyarázatát is adjuk meg)?
+|log2(B(R))| + m
+m = SC(A,R) / FR - 1 felső egésze
+m a pluszba beolvasandó lapok száma
+ztz
+
+94. Mennyi B+-fa típusú ELSŐDLEGES index esetén az átlagos keresési költség, ha minden találatot be kell olvasni (a jelölések magyarázatát is adjuk meg)?
+HTi + SC(A,R) / FR
+ztz
+
+95. Mennyi B+-fa típusú MÁSODLAGOS index esetén az átlagos keresési költség, ha minden találatot be kell olvasni (a jelölések magyarázatát is adjuk meg)?
+Kulcs mező esetén: HTi + 1
+Nem kulcs esetén: HTi + SC(A,R)
+[Lineáris keresés sokkal kedvezőbb, ha sok a megfelelő rekord]
+ztz
+
+96. A RO[F1 és F2 és F3 ... és Fn] lekérdezésnek adjuk meg kétféle kiszámítási módját!
+Konjunkciós lekérdezés
+Egyszerű kiválasztás legkisebb költségű F-re, maradék F alapján szűrjük az eredményt
+Több index használata: visszaadott RID-ek metszete lesz az eredmény
+ztz
+
+97. A RO[F1 v F2 v F3 ... v Fn] lekérdezésnek adjuk meg kétféle kiszámítási módját!
+Diszjunkciós lekérdezés
+Több index használata: RID-ek uniója lesz az eredmény
+Lineáris kereséssel
+ztz
+
+98. Milyen adatbázis műveletekhez kell rendezés?
+Halmazműveletek, projektálás és distinct kiválasztáshoz szükséges
+ztz
+
+99. Milyen két fajtája van a rendezésnek?
+Belső rendezés, ha a rekordok beleférnek a memóriába
+Külső rendezés
+ztz
+
+100. Külső összefésülő rendezésnél mire jó a rendező lépés?
+Létrehozza a rendezett futamokat
+ztz
+
+101. Külső összefésülő rendezésnél mire jó az összevonási lépés?
+Összefésüli a rendezett futamokat
+ztz
+
+102. Külső összefésülő rendezésnél mikor kell több menetben végezni az összevonási lépést?
+Ha N (futamok száma) > M (memóriába olvasott lapok száma)
+Minden menet M-1 futamot fésül össze, ameddig nincs feldolgozva a reláció
+ztz
+
+103. Külső összefésülő rendezésnél mennyi a rendező lépés költsége?
+2 * BR
+ztz
+
+104. Külső összefésülő rendezésnél mennyi összevonandó futam van kezdetben?
+BR / M felső egészrész
+ztz
+
+105. Külső összefésülő rendezésnél mennyi az összes menetek száma?
+| log[M-1](BR / M) |
+ztz
+
+106. Külső összefésülő rendezésnél mennyi blokkot olvasunk minden menetben?
+2 * BR
+ztz
+
+107. Külső összefésülő rendezésnél mennyi a teljes költség, a végeredmény kiírása nélkül?
+2 * BR + 2 * BR * |logM-1(BR / M)| - BR
+ztz
+
+108. A vetítés milyen három lépés megvalósításából áll?
+Kezdeti átnézés, rendezés, végső átnézés
+ztz
+
+109. Soroljuk fel az összekapcsolás 5 megvalósítását!
+Nested loop
+Block-nested loop
+Index nested loop
+Sort merge
+Hash
+ztz
+
+110. Skatulyázott (NestedLoop) összekapcsolásnál mennyi a költség legjobb esetben?
+Legrosszabb esetben mindkét relációból 1-1 lap fér bele a memóriába
+NR * BS + BR
+ztz
+
+112. Blokk-Skatulyázott (BlockNestedLoop) összekapcsolásnál mennyi a költség legjobb esetben?
+Legjobb esetben a kisebb reláció teljesen elfér a memóriában
+BR + BS
+ztz
+
+113. Blokk-Skatulyázott (BlockNestedLoop) összekapcsolásnál mennyi a költség legrosszabb esetben?
+Legrosszabb esetben mindkét relációból 1-1 lap fér bele a memóriába
+BR * BS + BR
+ztz
+
+114. Indexelt összekapcsolásnál mennyi a költség?
+BR + NR * c
+Ahol c a belső relációból indexxel kiválasztás költsége
+ztz
+
+115. Rendezéses-Összefésüléses összekapcsolásnál mennyi a költség?
+Rendezés költsége + BR + BS
+ztz
+
+116. Hasításos összekapcsolásnál mennyi a költség?
+2 * (BR + BS) + (BR + BS)
+ztz
+
+117. Hasításos összekapcsolásnál mekkora méretű kosarakat képezünk?
+Alkalmazzuk a hasítófüggvényt az összekapcsolási mezőkre, és a rekordokat felosztjuk a memóriában elférő részekre
+ztz
+
+118. Hány sora van a RO[A=v](R) lekérdezés eredményének?
+SC(A,R)
+ztz
+
+119. Hány sora van a RO[A<=v](R) lekérdezés eredményének?
+NR * (v - min(A, R)) / (max(A, R) - min(A, R))
+ztz
+
+120. Hány sora van a RO[F1 és F2 és ... Fn](R) lekérdezés eredményének?
+NR * [(S1 / NR) * (S2 / NR) * ... * (Sn / NR)]
+ztz
+
+121. Hány sora van a RO[F1 v F2 v ... Fn](R) lekérdezés eredményének?
+NR * (1 - [(1 - S1 / NR) * (1 - S2 / NR) * … * (1 - Sn / NR)])
+ztz
+
+122. Hány sora van az R |X| S lekérdezés eredményének?
+NR * NS
+ztz
+
+123. Hány sora van az R |X| S lekérdezés eredményének, ha R metszet S = 0?
+NR * NS
+ztz
+
+124. Hány sora van az R |X| S lekérdezés eredményének, ha R metszet S kulcs R-en?
+A maximális méret NS (minimális NR?)
+ztz
+
+125. Hány sora van az R |X| S lekérdezés eredményének, ha R metszet S idegen kulcs R-hez?
+NS
+ztz
+
+126. Hány sora van az R |X| S lekérdezés eredményének, ha R metszet S = {A} sem R-nek, sem S-nek nem kulcsa?
+NS * NR / V(A, R)
+NR * NS / V(A, S)
 ztz
